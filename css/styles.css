@@ -1,0 +1,146 @@
+.container {
+    margin: 0 auto;
+    max-width: 960px;
+}
+/**************************************************************************
+LEFT SIDE AND RIGHT SIDE
+**************************************************************************/
+.leftside{
+    background-color: #0E161A;
+    padding-right: 0px !important; 
+    padding-left: 0px !important;
+    border-bottom-left-radius: 10px; 
+    border-top-left-radius: 10px; 
+    color : white;
+}
+
+.rightside{
+    background-color: white;
+    padding-left: 10px;
+    border-bottom-right-radius: 10px; 
+    border-top-right-radius: 10px; 
+    padding-right: 0px !important; 
+    padding-left: 0px !important;
+}
+/**************************************************************************
+SEARCH
+**************************************************************************/
+.searchbar{
+    background-color: #D64951;
+    padding:10px;
+    border-top-left-radius: 10px; 
+}
+
+/**************************************************************************
+MENU
+**************************************************************************/
+.menubar{
+    background-color: #0E161A;
+    padding:195px;
+}
+
+/**************************************************************************
+TITLE
+**************************************************************************/
+.titlebar{
+    background-color: aqua;
+    padding:10px;
+    border-top-right-radius: 10px; 
+
+}
+
+/**************************************************************************
+CONTENT
+**************************************************************************/
+.contentbar{
+    padding:10px;
+    border-bottom-right-radius: 10px; 
+}
+
+/*
+* Row with equal height columns
+* --------------------------------------------------
+*/
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+.row {
+    margin-bottom: 20px;
+}
+.row .row {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+
+
+
+/**************************************************************************
+SEARCH BAR
+**************************************************************************/
+
+.box{
+    width: 100%;
+    height: 50px;
+}
+
+.container-1{
+    width: 100%;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+}
+
+.container-1 input#search{
+    width: 100%;
+    height: 50px;
+    background: #D64951;
+    border: none;
+    font-size: 12pt;
+    float: right;
+    color: black;
+    padding-left: 45px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    -webkit-transition: background .55s ease;
+    -moz-transition: background .55s ease;
+    -ms-transition: background .55s ease;
+    -o-transition: background .55s ease;
+    transition: background .55s ease;
+}
+
+.container-1 input#search::-webkit-input-placeholder {
+    color: white;
+}
+
+.container-1 input#search:-moz-placeholder { /* Firefox 18- */
+    color: #65737e;  
+}
+
+.container-1 input#search::-moz-placeholder {  /* Firefox 19+ */
+    color: #65737e;  
+}
+
+.container-1 input#search:-ms-input-placeholder {  
+    color: white;  
+}
+
+.container-1 .icon{
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+    z-index: 1;
+    font-size: 23px;
+    color: white;
+}
+
+.container-1 input#search:hover, .container-1 input#search:focus, .container-1 input#search:active{
+    outline:none;
+    background: white;
+    color: black;
+}
