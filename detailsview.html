@@ -45,77 +45,95 @@
                 </div>
 
                 <div class="col-xs-9 rightside">
-                    <div class="titlebar">
-                        <p>Titre du film </p>
-                        <div class="totalmovies"></div>
-                    </div>
-
                     <div id="contentbar">
+                        <div class="featured-movie">
+                            <img class="cover" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/22043/backdrop_ggwxvq_1.jpg" alt="" class="cover" />
+                            <p class="corner-title">Staff pick</p>
 
+                            <div class="bottom-bar">
+                                <div class="title-container">
+                                    <span class="fa fa-play-circle"></span>
+                                    <b>Non-stop</b> Trailer #1
+                                </div>
+
+                                <div class="right">
+                                    <div class="stars">
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star-half-o"></span>
+                                        <span class="fa fa-star-o"></span>
+                                    </div>
+                                    <div class="share">
+                                        <icon class="fa fa-share-square"></icon> Share
+                                    </div>
+                                </div> <!-- right -->
+                            </div> <!-- bottom bar -->
+                        </div> <!-- featured -->
                     </div>
-
-
                 </div>
+
+
             </div>
+        </div>
         </div> <!-- /container -->
-        <!-- script references -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <script src="js/modernizr.custom.js"></script>
+    <!-- script references -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
 
-        <script src="js/bootstrap.min.js"></script>
-        <script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
 
-            $( document ).ready(function() {
-                coucou();
+        $( document ).ready(function() {
 
+            var prodId = getParameterByName('id');
+            console.log(prodId);
+            coucou(getParameterByName('id'));
+        });
+
+        function coucou()
+        {
+            //$('#poster').html("<h2 class='loading'>Your poster is on its way!</h2>");
+
+            //$.getJSON("http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303?callback=?", function(json) 
+            //          {
+            //   console.log(json);
+            //$('#contentbar').html('<h2 class="loading">Were afraid nothing was found for that search. Perhaps you were looking for The Goonies?</h2><img id="thePoster" src=' + json[0].posters[0].image.url + ' />');
+            //});
+
+            var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+            $.getJSON(config, myCallback)
+                .done(function( data ) {
+                return data;
             });
+        };
 
-            function coucou()
-            {
-                //$('#poster').html("<h2 class='loading'>Your poster is on its way!</h2>");
+        function myCallback(data){
+            // Do some processing!
+            var baseurl = data.images.base_url;
+            var size = data.images.poster_sizes[4];
 
-                //$.getJSON("http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303?callback=?", function(json) 
-                //          {
-                //   console.log(json);
-                //$('#contentbar').html('<h2 class="loading">Were afraid nothing was found for that search. Perhaps you were looking for The Goonies?</h2><img id="thePoster" src=' + json[0].posters[0].image.url + ' />');
-                //});
+            var flickerAPI = "https://api.themoviedb.org/3/movie/"+getParameterByName('id')+"?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+            $.getJSON(flickerAPI)
 
-                var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-                $.getJSON(config, myCallback)
-                    .done(function( data ) {
-                    return data;
+                .done(function( data ) {
+                //$('#contentbar').html("");
+                $.each( data.results, function( i, item ) {
+
+                    if (item.poster_path != null){
+                        //$('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><div class='caption'><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href="+item.release_date+" class='btn btn-primary' role='button'>Favoris</a> <a href="+item.release_date+" class='btn btn-default' role='button'>Détails</a></p></center></div></div></div>");
+                    }
                 });
-            };
+            });
+        };
 
-            function myCallback(data){
-                // Do some processing!
-                var baseurl = data.images.base_url;
-                var size = data.images.poster_sizes[4];
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
 
-                var flickerAPI = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-
-                $.getJSON(flickerAPI)
-
-                    .done(function( data ) {
-                    $('#contentbar').html("");
-                    $('.totalmovies').html("");
-                    $('.totalmovies').append("<p>"+data.results.length+" movies</p>");
-                    $.each( data.results, function( i, item ) {
-
-                        if (item.poster_path != null){
-                            //$('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><div class='caption'><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href="+item.release_date+" class='btn btn-primary' role='button'>Favoris</a> <a href="+item.release_date+" class='btn btn-default' role='button'>Détails</a></p></center></div></div></div>");
-                        }
-                    });
-                });
-            };
-
-            function getParameterByName(name) {
-                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                    results = regex.exec(location.search);
-                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-            }
-
-        </script>
+    </script>
     </body>
 </html>

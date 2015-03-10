@@ -180,3 +180,69 @@ SEARCH BAR
     background: white;
     color: black;
 }
+
+
+
+
+
+
+
+
+
+
+.featured-movie {
+  position: relative;
+}
+.featured-movie .cover {
+  width: 100%;
+  display: block;
+}
+.featured-movie .corner-title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-transform: uppercase;
+  color: #FFF;
+  background: rgba(25, 25, 25, 0.3);
+  padding: 10px;
+  font-size: 13px;
+}
+.featured-movie .bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 30px;
+  background: rgba(10, 10, 10, 0.8);
+  color: #FFF;
+  overflow: hidden;
+}
+.featured-movie .bottom-bar .title-container {
+  float: left;
+  font-weight: 100;
+  font-size: 40px;
+}
+.featured-movie .bottom-bar .title-container .fa {
+  margin-right: 10px;
+  color: #FF3A3A;
+}
+.featured-movie .bottom-bar .title-container b {
+  font-weight: 600;
+}
+.featured-movie .bottom-bar .right {
+  float: right;
+  font-size: 14px;
+  margin-top: 14px;
+}
+.featured-movie .bottom-bar .right .stars {
+  float: left;
+  color: #F0C236;
+  margin-right: 20px;
+}
+.featured-movie .bottom-bar .right .share {
+  float: left;
+  cursor: pointer;
+}
+.featured-movie .bottom-bar .right .share .fa {
+  margin-right: 5px;
+}

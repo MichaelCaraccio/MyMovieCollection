@@ -49,62 +49,61 @@
 
                     <div id="contentbar">
 
+
+
                     </div>
-
-
                 </div>
-            </div>
-        </div> <!-- /container -->
-        <!-- script references -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <script src="js/modernizr.custom.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script>
+            </div> <!-- /container -->
+            <!-- script references -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+            <script src="js/modernizr.custom.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script>
 
-            $( document ).ready(function() {
-                coucou();
+                $( document ).ready(function() {
+                    coucou();
 
-            });
-
-            function coucou()
-            {
-                //$('#poster').html("<h2 class='loading'>Your poster is on its way!</h2>");
-
-                //$.getJSON("http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303?callback=?", function(json) 
-                //          {
-                //   console.log(json);
-                //$('#contentbar').html('<h2 class="loading">Were afraid nothing was found for that search. Perhaps you were looking for The Goonies?</h2><img id="thePoster" src=' + json[0].posters[0].image.url + ' />');
-                //});
-
-                var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-                $.getJSON(config, myCallback)
-                    .done(function( data ) {
-                    return data;
                 });
-            };
 
-            function myCallback(data){
-                // Do some processing!
-                var baseurl = data.images.base_url;
-                var size = data.images.poster_sizes[4];
+                function coucou()
+                {
+                    //$('#poster').html("<h2 class='loading'>Your poster is on its way!</h2>");
 
-                var flickerAPI = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    //$.getJSON("http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303?callback=?", function(json) 
+                    //          {
+                    //   console.log(json);
+                    //$('#contentbar').html('<h2 class="loading">Were afraid nothing was found for that search. Perhaps you were looking for The Goonies?</h2><img id="thePoster" src=' + json[0].posters[0].image.url + ' />');
+                    //});
 
-                $.getJSON(flickerAPI)
-
-                    .done(function( data ) {
-                    $('#contentbar').html("");
-                    $('.totalmovies').html("");
-                    $('.totalmovies').append("<p>"+data.results.length+" movies</p>");
-                    $.each( data.results, function( i, item ) {
-                        console.log(item);
-                        if (item.poster_path != null){
-                            $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><div class='caption'><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.html?id="+item.id+" class='btn btn-primary' role='button'>Favoris</a> <a href=detailsview.html?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div></div>");
-                        }
+                    var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    $.getJSON(config, myCallback)
+                        .done(function( data ) {
+                        return data;
                     });
-                });
-            };
+                };
 
-        </script>
-    </body>
-</html>
+                function myCallback(data){
+                    // Do some processing!
+                    var baseurl = data.images.base_url;
+                    var size = data.images.poster_sizes[4];
+
+                    var flickerAPI = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+
+                    $.getJSON(flickerAPI)
+
+                        .done(function( data ) {
+                        $('#contentbar').html("");
+                        $('.totalmovies').html("");
+                        $('.totalmovies').append("<p>"+data.results.length+" movies</p>");
+                        $.each( data.results, function( i, item ) {
+                            console.log(item);
+                            if (item.poster_path != null){
+                                $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><div class='caption'><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.html?id="+item.id+" class='btn btn-primary' role='button'>Favoris</a> <a href=detailsview.html?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div></div>");
+                            }
+                        });
+                    });
+                };
+
+            </script>
+            </body>
+        </html>
