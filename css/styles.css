@@ -1,15 +1,15 @@
 body {
-	margin-top: 50px;
-	margin-bottom: 50px;
-	background: none;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background: none;
 }
 
 .full {
-  background: url(../img/bg1.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background: url(../img/bg1.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .container {
@@ -17,8 +17,8 @@ body {
     max-width: 960px;
     border-radius: 10px;
     box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.7);
--moz-box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.7);
--webkit-box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.7);
 }
 /**************************************************************************
 LEFT SIDE AND RIGHT SIDE
@@ -54,9 +54,21 @@ MENU
 **************************************************************************/
 .menubar{
     background-color: #0E161A;
-    padding:20px;
+}
+.menu-title{
+    padding-top:15px;
+    padding-left:15px;
+    font-size: 18px;
 }
 
+.menu-item{
+    color:white;
+    font-size: 15px;
+}
+.menu-ul{
+    color:white;
+    list-style-type: none;
+}
 /**************************************************************************
 TITLE
 **************************************************************************/

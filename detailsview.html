@@ -1,3 +1,6 @@
+<!-- RATING http://fortawesome.github.io/Font-Awesome/examples/#stacked -->
+<!-- SHARE http://coolestguidesontheplanet.com/creating-social-media-menu-icons-fontawesome/ -->
+
 <!DOCTYPE html>
 <html lang="en" class="full">
     <head>
@@ -43,7 +46,7 @@
 
                 <div class="col-xs-9 rightside">
                     <div class="titlebar">
-                        <p>Upcoming movies</p>
+                        <p>Titre du film </p>
                         <div class="totalmovies"></div>
                     </div>
 
@@ -58,6 +61,7 @@
         <!-- script references -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <script src="js/modernizr.custom.js"></script>
+
         <script src="js/bootstrap.min.js"></script>
         <script>
 
@@ -97,13 +101,20 @@
                     $('.totalmovies').html("");
                     $('.totalmovies').append("<p>"+data.results.length+" movies</p>");
                     $.each( data.results, function( i, item ) {
-                        console.log(item);
+
                         if (item.poster_path != null){
-                            $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><div class='caption'><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.html?id="+item.id+" class='btn btn-primary' role='button'>Favoris</a> <a href=detailsview.html?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div></div>");
+                            //$('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><div class='caption'><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href="+item.release_date+" class='btn btn-primary' role='button'>Favoris</a> <a href="+item.release_date+" class='btn btn-default' role='button'>Détails</a></p></center></div></div></div>");
                         }
                     });
                 });
             };
+
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
 
         </script>
     </body>
