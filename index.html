@@ -52,6 +52,7 @@
 
 
                     </div>
+             
                 </div>
             </div> <!-- /container -->
             <!-- script references -->
@@ -67,14 +68,6 @@
 
                 function coucou()
                 {
-                    //$('#poster').html("<h2 class='loading'>Your poster is on its way!</h2>");
-
-                    //$.getJSON("http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303?callback=?", function(json) 
-                    //          {
-                    //   console.log(json);
-                    //$('#contentbar').html('<h2 class="loading">Were afraid nothing was found for that search. Perhaps you were looking for The Goonies?</h2><img id="thePoster" src=' + json[0].posters[0].image.url + ' />');
-                    //});
-
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                     $.getJSON(config, myCallback)
                         .done(function( data ) {
@@ -98,12 +91,12 @@
                         $.each( data.results, function( i, item ) {
                             console.log(item);
                             if (item.poster_path != null){
-                                $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><div class='caption'><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.html?id="+item.id+" class='btn btn-primary' role='button'>Favoris</a> <a href=detailsview.html?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div></div>");
-                            }
+                                $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.html?id="+item.id+" class='btn btn-primary' role='button'>Favoris</a> <a href=detailsview.html?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div>");}
                         });
                     });
+                    
                 };
-
+                
             </script>
             </body>
         </html>
