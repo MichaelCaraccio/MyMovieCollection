@@ -10,7 +10,7 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
-nav a {
+nav span {
     position: relative;
     display: inline-block;
     margin: 0px 25px;
@@ -24,9 +24,10 @@ nav a {
     font-size: 1.1em;
 }
 
-nav a:hover,
-nav a:focus {
+nav span:hover,
+nav span:focus {
     outline: none;
+    text-decoration: none;
 }
 
 /* Effect 1: Brackets */

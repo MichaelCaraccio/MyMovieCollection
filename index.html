@@ -19,7 +19,7 @@
                     <div class="searchbar">
                         <div class="box">
                             <div class="container-1">
-                                <input type="search" id="search" placeholder="Search..." />
+                                <input type="search" id="search" placeholder="Search..."/>
                                 <span class="icon"><i class="fa fa-search"></i></span>
                             </div>
                         </div>
@@ -27,11 +27,11 @@
 
                     <div class="menubar">
                         <p class="menu-title">Menu</p>
-                        <nav class="cl-effect-5">
-                            <a href="#"><span data-hover="[ Now Playing ]"><i class="fa fa-play"></i>&nbsp; Now Playing</span></a>
-                            <a href="#"><span data-hover="[ Discover ]"><i class="fa fa-dot-circle-o"></i>&nbsp; Discover</span></a>
-                            <a href="#"><span data-hover="[ Popular ]"><i class="fa fa-film"></i>&nbsp; Popular</span></a>
-                            <a href="#"><span data-hover="[ Upcoming ]"><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span></a>
+                        <nav>
+                            <span id="nowplaying"><i class="fa fa-play"></i>&nbsp; Now Playing</span>
+                            <span id="discover"><i class="fa fa-dot-circle-o"></i>&nbsp; Discover</span>
+                            <span id="popular"><i class="fa fa-film"></i>&nbsp; Popular</span>
+                            <span id="upcoming"><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span>
                         </nav>
                         <p class="menu-title">Account</p>
                         <nav class="cl-effect-5">
@@ -52,7 +52,7 @@
 
 
                     </div>
-             
+
                 </div>
             </div> <!-- /container -->
             <!-- script references -->
@@ -62,41 +62,120 @@
             <script>
 
                 $( document ).ready(function() {
-                    coucou();
-
+                    loadNowPlayingMovies();
                 });
 
-                function coucou()
+                // Begin SEARCH
+                var button = document.getElementById("search");
+                button.addEventListener("keyup", function(e) {
+                    if (e.keyCode == 13)
+                    {
+                        var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                        $.getJSON(config, null)
+                            .done(function(data) {
+                            searchQuery(data,"test");
+                            return data;
+                        });
+                    }
+
+                });
+                // End SEARCH
+
+                $( "#nowplaying" ).click(function() {
+                    var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    var query = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                        $.getJSON(config, null)
+                            .done(function(data) {
+                            multipleQuery(data,query);
+                            return data;
+                        });
+                });
+                
+                $( "#discover" ).click(function() {
+                    var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    var query = "http://api.themoviedb.org/3/discover/movie?vote_count.gte=5&api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                        $.getJSON(config, null)
+                            .done(function(data) {
+                            multipleQuery(data,query);
+                            return data;
+                        });
+                });
+
+                function loadNowPlayingMovies()
                 {
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-                    $.getJSON(config, myCallback)
+                    $.getJSON(config, nowPlayingQuery)
                         .done(function( data ) {
                         return data;
                     });
                 };
 
-                function myCallback(data){
+                function nowPlayingQuery(data){
                     // Do some processing!
                     var baseurl = data.images.base_url;
                     var size = data.images.poster_sizes[4];
 
-                    var flickerAPI = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    var themovieDbQueryURL = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
 
-                    $.getJSON(flickerAPI)
+                    $.getJSON(themovieDbQueryURL)
 
                         .done(function( data ) {
                         $('#contentbar').html("");
                         $('.totalmovies').html("");
                         $('.totalmovies').append("<p>"+data.results.length+" movies</p>");
                         $.each( data.results, function( i, item ) {
-                            console.log(item);
+                            //console.log(item);
                             if (item.poster_path != null){
                                 $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.html?id="+item.id+" class='btn btn-primary' role='button'>Favoris</a> <a href=detailsview.html?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div>");}
                         });
                     });
-                    
+
+                };
+
+                function searchQuery(data,x){
+                    console.log(x);
+                    // Do some processing!
+                    var baseurl = data.images.base_url;
+                    var size = data.images.poster_sizes[4];
+
+                    var movie = document.getElementById("search").value;
+
+                    var themovieDbQueryURL = "http://api.themoviedb.org/3/search/movie?query="+movie+"&api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    //console.log(themovieDbQueryURL);
+                    $.getJSON(themovieDbQueryURL)
+
+                        .done(function( data ) {
+                        $('#contentbar').html("");
+                        $('.totalmovies').html("");
+                        $('.totalmovies').append("<p>"+data.results.length+" movies</p>");
+                        $.each( data.results, function( i, item ) {
+                            //console.log(item);
+                            if (item.poster_path != null){
+                                $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.html?id="+item.id+" class='btn btn-primary' role='button'>Favoris</a> <a href=detailsview.html?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div>");}
+                        });
+                    });
                 };
                 
+                
+                function multipleQuery(data,query){
+                    console.log(query);
+                    // Do some processing!
+                    var baseurl = data.images.base_url;
+                    var size = data.images.poster_sizes[4];
+
+                    $.getJSON(query)
+
+                        .done(function( data ) {
+                        $('#contentbar').html("");
+                        $('.totalmovies').html("");
+                        $('.totalmovies').append("<p>"+data.results.length+" movies</p>");
+                        $.each( data.results, function( i, item ) {
+                            //console.log(item);
+                            if (item.poster_path != null){
+                                $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.html?id="+item.id+" class='btn btn-primary' role='button'>Favoris</a> <a href=detailsview.html?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div>");}
+                        });
+                    });
+                };
             </script>
             </body>
         </html>
