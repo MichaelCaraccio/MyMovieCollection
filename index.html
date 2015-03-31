@@ -41,17 +41,15 @@
                 </div>
 
                 <div class="col-xs-9 rightside">
-                    <div class="titlebar">
-                        <p>Upcoming movies</p>
-                        <div class="totalmovies"></div>
+                    <div style="width: 100%; overflow: hidden;">
+                        <div class="titlebar">
+                            <p>Upcoming movies</p>    
+                        </div>
+                        <div id="totalmovies"></div>
                     </div>
-
                     <div id="contentbar">
 
-
-
                     </div>
-
                 </div>
             </div> <!-- /container -->
             <!-- script references -->
@@ -81,46 +79,48 @@
                 // End SEARCH
 
                 $( "#nowplaying" ).click(function() {
+                    $('.titlebar').html("Now Playing");
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                     var query = "http://api.themoviedb.org/3/movie/now_playing?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-                        $.getJSON(config, null)
-                            .done(function(data) {
-                            multipleQuery(data,query);
-                            return data;
-                        });
+                    $.getJSON(config, null)
+                        .done(function(data) {
+                        multipleQuery(data,query);
+                        return data;
+                    });
                 });
-                
+
                 $( "#top_rated" ).click(function() {
+                    $('.titlebar').html("Top Rated");
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                     var query = "http://api.themoviedb.org/3/movie/top_rated?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-                        $.getJSON(config, null)
-                            .done(function(data) {
-                            multipleQuery(data,query);
-                            return data;
-                        });
+                    $.getJSON(config, null)
+                        .done(function(data) {
+                        multipleQuery(data,query);
+                        return data;
+                    });
                 });
-                
-                 $( "#upcoming" ).click(function() {
+
+                $( "#upcoming" ).click(function() {
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                     var query = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-                        $.getJSON(config, null)
-                            .done(function(data) {
-                            multipleQuery(data,query);
-                            return data;
-                        });
+                    $.getJSON(config, null)
+                        .done(function(data) {
+                        multipleQuery(data,query);
+                        return data;
+                    });
                 });
-                
+
                 $( "#popular" ).click(function() {
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b80e7f54ca6c21303";                                           $.getJSON(config, null)
-                            .done(function(data) {
-                            multipleQuery(data,query);
-                            return data;
-                        });
+                    var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b80e7f54ca6c21303";                                           $.getJSON(config, null)
+                        .done(function(data) {
+                        multipleQuery(data,query);
+                        return data;
+                    });
                 });
-                
+
                 // http://api.themoviedb.org/3/top_rated/movie?sort_by=popularity.asc&api_key=d4a2b2b22e65297b80e7f54ca6c21303
-                
+
 
                 function loadNowPlayingMovies()
                 {
@@ -142,8 +142,7 @@ var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b8
 
                         .done(function( data ) {
                         $('#contentbar').html("");
-                        $('.totalmovies').html("");
-                        $('.totalmovies').append("<p>"+data.results.length+" movies</p>");
+                        $('#totalmovies').html("<p>"+data.results.length+" movies</p>");
                         $.each( data.results, function( i, item ) {
                             //console.log(item);
                             if (item.poster_path != null){
@@ -154,7 +153,7 @@ var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b8
                 };
 
                 function searchQuery(data,x){
-                    console.log(x);
+
                     // Do some processing!
                     var baseurl = data.images.base_url;
                     var size = data.images.poster_sizes[4];
@@ -167,8 +166,8 @@ var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b8
 
                         .done(function( data ) {
                         $('#contentbar').html("");
-                        $('.totalmovies').html("");
-                        $('.totalmovies').append("<p>"+data.results.length+" movies</p>");
+                        $('#totalmovies').html("");
+                        $('#totalmovies').append("<p>"+data.results.length+" movies</p>");
                         $.each( data.results, function( i, item ) {
                             //console.log(item);
                             if (item.poster_path != null){
@@ -176,8 +175,8 @@ var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b8
                         });
                     });
                 };
-                
-                
+
+
                 function multipleQuery(data,query){
                     console.log(query);
                     // Do some processing!
@@ -188,8 +187,8 @@ var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b8
 
                         .done(function( data ) {
                         $('#contentbar').html("");
-                        $('.totalmovies').html("");
-                        $('.totalmovies').append("<p>"+data.results.length+" movies</p>");
+                        $('#totalmovies').html("aaaaa");
+                        $('#totalmovies').append("<p>ss movies</p>");
                         $.each( data.results, function( i, item ) {
                             //console.log(item);
                             if (item.poster_path != null){

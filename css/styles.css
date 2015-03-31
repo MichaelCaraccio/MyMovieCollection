@@ -1,5 +1,4 @@
 body {
-    margin-top: 50px;
     margin-bottom: 50px;
     background: none;
 }
@@ -118,14 +117,17 @@ TITLE
     border-top-right-radius: 10px; 
     color:black;
     font-size: 20px;
+    width: 60%;
+    float: left;
 }
 
-.totalmovies{
+#totalmovies{
     float:right;
-    position: absolute;
-    top:0;
     right:0;
-    margin:25px;
+    padding:10px;
+    padding-bottom:10px;
+    margin-right:10px;
+    margin-top:15px;
     font-size: 16px;
 }
 
