@@ -8,7 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
-        <link href="css/component.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body>
@@ -29,14 +28,14 @@
                         <p class="menu-title">Menu</p>
                         <nav>
                             <span id="nowplaying"><i class="fa fa-play"></i>&nbsp; Now Playing</span>
-                            <span id="discover"><i class="fa fa-dot-circle-o"></i>&nbsp; Discover</span>
+                            <span id="top_rated"><i class="fa fa-dot-circle-o"></i>&nbsp; Top Rated</span>
                             <span id="popular"><i class="fa fa-film"></i>&nbsp; Popular</span>
                             <span id="upcoming"><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span>
                         </nav>
                         <p class="menu-title">Account</p>
                         <nav class="cl-effect-5">
-                            <a href="#"><span data-hover="[ Login ]"><i class="fa fa-user"></i>&nbsp; Login</span></a>
-                            <a href="#"><span data-hover="[ Favorites ]"><i class="fa fa-heart"></i>&nbsp; Favorites</span></a>
+                            <span id="login"><i class="fa fa-user"></i>&nbsp; Login</span>
+                            <span id="favorites"><i class="fa fa-heart"></i>&nbsp; Favorites</span>
                         </nav>
                     </div>
                 </div>
@@ -83,6 +82,26 @@
 
                 $( "#nowplaying" ).click(function() {
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    var query = "http://api.themoviedb.org/3/movie/now_playing?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                        $.getJSON(config, null)
+                            .done(function(data) {
+                            multipleQuery(data,query);
+                            return data;
+                        });
+                });
+                
+                $( "#top_rated" ).click(function() {
+                    var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    var query = "http://api.themoviedb.org/3/movie/top_rated?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                        $.getJSON(config, null)
+                            .done(function(data) {
+                            multipleQuery(data,query);
+                            return data;
+                        });
+                });
+                
+                 $( "#upcoming" ).click(function() {
+                    var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                     var query = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                         $.getJSON(config, null)
                             .done(function(data) {
@@ -91,15 +110,17 @@
                         });
                 });
                 
-                $( "#discover" ).click(function() {
+                $( "#popular" ).click(function() {
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-                    var query = "http://api.themoviedb.org/3/discover/movie?vote_count.gte=5&api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-                        $.getJSON(config, null)
+var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b80e7f54ca6c21303";                                           $.getJSON(config, null)
                             .done(function(data) {
                             multipleQuery(data,query);
                             return data;
                         });
                 });
+                
+                // http://api.themoviedb.org/3/top_rated/movie?sort_by=popularity.asc&api_key=d4a2b2b22e65297b80e7f54ca6c21303
+                
 
                 function loadNowPlayingMovies()
                 {

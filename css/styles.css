@@ -20,6 +20,30 @@ body {
     -moz-box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.7);
     -webkit-box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.7);
 }
+
+/**************************************************************************
+NAVIGATION BAR
+**************************************************************************/
+nav span {
+    position: relative;
+    display: inline-block;
+    margin: 0px 10px 10px 25px;
+    outline: none;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    text-shadow: 0 0 1px rgba(255,255,255,0.3);
+    font-size: 1.1em;
+    cursor:pointer;
+}
+
+nav span:hover,
+nav span:focus {
+    outline: none;
+    text-decoration: none;
+}
 /**************************************************************************
 LEFT SIDE AND RIGHT SIDE
 **************************************************************************/
@@ -200,9 +224,9 @@ SEARCH BAR
 
 
 
-
-
-
+/**************************************************************************
+DETAIL VIEW
+**************************************************************************/
 .featured-movie {
     position: relative;
 }
