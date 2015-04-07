@@ -320,6 +320,7 @@ DETAIL VIEW
 .featured-movie .cover {
     width: 100%;
     display: block;
+    height:406px;
 }
 .featured-movie .corner-title {
     position: absolute;
