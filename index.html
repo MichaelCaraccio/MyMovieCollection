@@ -69,8 +69,31 @@
             <script>
 
                 $( document ).ready(function() {
+                    
                     $('.container').hide();
-                    loadNowPlayingMovies();
+
+                    var prodId = getParameterByName('id');
+                     $('.container').show();
+
+                    switch(prodId) {
+                    case "nowplaying":
+                        $( "#nowplaying" ).trigger( "click" );
+                        break;
+                    case "top_rated":
+                        $( "#top_rated" ).trigger( "click" );
+                        break;
+                    case "upcoming":
+                        $( "#upcoming" ).trigger( "click" );
+                        break;
+                    case "popular":
+                        $( "#popular" ).trigger( "click" );
+                        break;
+                    default:
+                        loadNowPlayingMovies();
+                    }
+
+                   
+
                 });
 
                 // Begin SEARCH
@@ -123,6 +146,7 @@
                 });
 
                 $( "#popular" ).click(function() {
+                    console.log("je suis la");
                     $('.titlebar').html("Popular");
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                     var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b80e7f54ca6c21303";                                           $.getJSON(config, null)
@@ -137,7 +161,6 @@
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                     $.getJSON(config, nowPlayingQuery)
                         .done(function( data ) {
-                        $('.container').show();
                         return data;
                     });
                 };
@@ -203,6 +226,13 @@
                         });
                     });
                 };
+
+                function getParameterByName(name) {
+                    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                        results = regex.exec(location.search);
+                    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+                }
             </script>
             </body>
         </html>

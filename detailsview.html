@@ -29,18 +29,18 @@
 
                     <div class="menubar">
                         <p class="menu-title">Menu</p>
-                        <nav class="cl-effect-5">
-                            <a href="#"><span data-hover="[ Now Playing ]"><i class="fa fa-play"></i>&nbsp; Now Playing</span></a>
-                            <a href="#"><span data-hover="[ Discover ]"><i class="fa fa-dot-circle-o"></i>&nbsp; Discover</span></a>
-                            <a href="#"><span data-hover="[ Popular ]"><i class="fa fa-film"></i>&nbsp; Popular</span></a>
-                            <a href="#"><span data-hover="[ Upcoming ]"><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span></a>
+                        <nav>
+                            <a href="index.html?id=nowplaying"><span id="nowplaying"><i class="fa fa-play"></i>&nbsp; Now Playing</span></a>
+                            <a href="index.html?id=top_rated"><span id="top_rated"><i class="fa fa-dot-circle-o"></i>&nbsp; Top Rated</span></a>
+                            <a href="index.html?id=popular"><span id="popular"><i class="fa fa-film"></i>&nbsp; Popular</span></a>
+                            <a href="index.html?id=upcoming"><span id="upcoming"><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span></a>
                         </nav>
                         <p class="menu-title">Account</p>
                         <nav class="cl-effect-5">
-                            <a href="#"><span data-hover="[ Login ]"><i class="fa fa-user"></i>&nbsp; Login</span></a>
-                            <a href="#"><span data-hover="[ Favorites ]"><i class="fa fa-heart"></i>&nbsp; Favorites</span></a>
+                            <span id="login"><i class="fa fa-user"></i>&nbsp; Login</span>
+                            <span id="favorites"><i class="fa fa-heart"></i>&nbsp; Favorites</span>
                         </nav>
-                    </div>
+                    </div>  
                 </div>
 
                 <div class="col-xs-9 rightside">
@@ -103,21 +103,13 @@
         $( document ).ready(function() {
 
             var prodId = getParameterByName('id');
-            console.log(prodId);
             coucou(getParameterByName('id'));
         });
 
         function coucou()
         {
-            //$('#poster').html("<h2 class='loading'>Your poster is on its way!</h2>");
-
-            //$.getJSON("http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303?callback=?", function(json) 
-            //          {
-            //   console.log(json);
-            //$('#contentbar').html('<h2 class="loading">Were afraid nothing was found for that search. Perhaps you were looking for The Goonies?</h2><img id="thePoster" src=' + json[0].posters[0].image.url + ' />');
-            //});
-
             var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+
             $.getJSON(config, myCallback)
                 .done(function( data ) {
                 return data;
@@ -138,6 +130,10 @@
                 $('.movie-title').html("<b>"+data.title+"</b>");
                 $('.cover').attr('src', baseurl+size+data.backdrop_path);
                 $('.movie-synopsis').html(""+data.overview+"");
+
+                if(data.budget == 0)
+                    data.budget = "Unknown";
+
                 $('.movie-budget').html(""+data.budget+" milions");
                 $('.movie-original_title').html(""+data.original_title+"");
                 $('.movie-release_date').html(""+data.release_date+"");
