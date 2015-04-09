@@ -88,7 +88,6 @@
                     {
                     case "nowplaying":
                         nowplaying();
-                        console.log("la")
                         break;
                     case "top_rated":
                         top_rated();
@@ -179,8 +178,9 @@
                         .done(function( data ) {
                         totalPage = data.total_pages;
                         makePagination();
+                        
                         $('#contentbar').html("");
-                        $('#totalmovies').html("<p>"+data.results.length+" movies</p>");
+                        $('#totalmovies').html("<p>"+data.total_results +" results - Page "+prodPage+"</p>");
                         $.each( data.results, function( i, item ) {
 
                             if (item.poster_path != null){
@@ -206,7 +206,7 @@
                         
                         $('.titlebar').html("Result for "+movie);
                         $('#contentbar').html("");
-                        $('#totalmovies').html("<p>"+data.results.length+" movies</p>");
+                        $('#totalmovies').html("<p>"+data.total_results +" results - Page "+prodPage+"</p>");
 
                         $.each( data.results, function( i, item ) {
                             if (item.poster_path != null){
@@ -228,7 +228,7 @@
                         makePagination();
                         
                         $('#contentbar').html("");
-                        $('#totalmovies').html("<p>"+data.results.length+" movies</p>");
+                        $('#totalmovies').html("<p>"+data.total_results +" results - Page "+prodPage+"</p>");
                         $.each( data.results, function( i, item ) {
 
                             if (item.poster_path != null){
