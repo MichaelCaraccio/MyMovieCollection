@@ -51,18 +51,17 @@ PAGINATION
     display: inline-block;
     padding: 10px;
     border-radius: 5px; /*optional*/
-    color: #aaa;
     font-size: .875em;
 }
 
 .pagination {
-    padding: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     width:100%;
     margin-left: auto;
     margin-right: auto;
-    vertical-align: middle;
+    vertical-align:middle;
     align-content:center;
+    text-align:center;
 }
 
 .page {

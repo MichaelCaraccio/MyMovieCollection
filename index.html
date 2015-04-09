@@ -60,11 +60,6 @@
                     </div>
 
                     <div class="pagination">
-                      <!--  <a href="#" class="page dark">First</a>
-                        <a href="#" class="page dark">Previous</a>
-                        <span class="page dark active">4</span>
-                        <a href="#" class="page dark">Next</a>
-                        <a href="#" class="page dark">Last</a>-->
                     </div>
                 </div>
             </div> <!-- /container -->
@@ -266,7 +261,7 @@
                     }
                     
                     if(prodPage == totalPage){
-                      $('.pagination').html("<a href='#' class='page dark'>First</a><a href='#' class='page dark'>Previous</a><span class='page dark active'>4</span><a href='#' class='page dark'>Next</a><a href='#' class='page dark'>Last</a>");
+                     $('.pagination').html("<a href='index.html?id="+prodId+"&page=1' class='page dark'>First</a><a href='index.html?id="+prodId+"&page="+(prodPage-1)+"' class='page dark'>Previous</a><span class='page dark active'>"+prodPage+"</span>");
                     }else{
                     
                     }
