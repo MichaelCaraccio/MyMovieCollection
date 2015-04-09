@@ -27,10 +27,18 @@
                     <div class="menubar">
                         <p class="menu-title">Menu</p>
                         <nav>
-                            <span id="nowplaying"><i class="fa fa-play"></i>&nbsp; Now Playing</span>
-                            <span id="top_rated"><i class="fa fa-dot-circle-o"></i>&nbsp; Top Rated</span>
-                            <span id="popular"><i class="fa fa-film"></i>&nbsp; Popular</span>
-                            <span id="upcoming"><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span>
+                            <a href="index.html?id=nowplaying&page=1">
+                                <span><i class="fa fa-play"></i>&nbsp; Now Playing</span>
+                            </a>
+                            <a href="index.html?id=top_rated&page=1">
+                                <span><i class="fa fa-dot-circle-o"></i>&nbsp; Top Rated</span>
+                            </a>
+                            <a href="index.html?id=popular&page=1">
+                                <span><i class="fa fa-film"></i>&nbsp; Popular</span>
+                            </a>
+                            <a href="index.html?id=upcoming&page=1">
+                                <span><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span>
+                            </a>
                         </nav>
                         <p class="menu-title">Account</p>
                         <nav class="cl-effect-5">
@@ -52,13 +60,11 @@
                     </div>
 
                     <div class="pagination">
-                        <a href="#" class="page dark">first</a>
-                        <a href="#" class="page dark">2</a>
-                        <a href="#" class="page dark">3</a>
+                      <!--  <a href="#" class="page dark">First</a>
+                        <a href="#" class="page dark">Previous</a>
                         <span class="page dark active">4</span>
-                        <a href="#" class="page dark">5</a>
-                        <a href="#" class="page dark">6</a>
-                        <a href="#" class="page dark">last</a>
+                        <a href="#" class="page dark">Next</a>
+                        <a href="#" class="page dark">Last</a>-->
                     </div>
                 </div>
             </div> <!-- /container -->
@@ -67,33 +73,40 @@
             <script src="js/modernizr.custom.js"></script>
             <script src="js/bootstrap.min.js"></script>
             <script>
-
+                
+                var prodPage; 
+                var totalPage;
+                var prodId;
                 $( document ).ready(function() {
-                    
+        
                     $('.container').hide();
 
-                    var prodId = getParameterByName('id');
-                     $('.container').show();
+                    prodId = getParameterByName('id');
+                    prodPage = 1;
+                    if (getParameterByName('page') != null && getParameterByName('page') != ""){
+                        prodPage = getParameterByName('page');
+                    }
+                    
+                    $('.container').show();
 
-                    switch(prodId) {
+                    switch(prodId) 
+                    {
                     case "nowplaying":
-                        $( "#nowplaying" ).trigger( "click" );
+                        nowplaying();
+                        console.log("la")
                         break;
                     case "top_rated":
-                        $( "#top_rated" ).trigger( "click" );
+                        top_rated();
                         break;
                     case "upcoming":
-                        $( "#upcoming" ).trigger( "click" );
+                        upcoming();
                         break;
                     case "popular":
-                        $( "#popular" ).trigger( "click" );
+                        popular();
                         break;
                     default:
                         loadNowPlayingMovies();
                     }
-
-                   
-
                 });
 
                 // Begin SEARCH
@@ -111,50 +124,45 @@
 
                 });
                 // End SEARCH
-
-                $( "#nowplaying" ).click(function() {
+                function nowplaying(){
                     $('.titlebar').html("Now Playing");
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-                    var query = "http://api.themoviedb.org/3/movie/now_playing?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    var query = "http://api.themoviedb.org/3/movie/now_playing?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;
                     $.getJSON(config, null)
                         .done(function(data) {
                         multipleQuery(data,query);
                         return data;
                     });
-                });
-
-                $( "#top_rated" ).click(function() {
+                };
+                function top_rated(){
                     $('.titlebar').html("Top Rated");
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-                    var query = "http://api.themoviedb.org/3/movie/top_rated?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    var query = "http://api.themoviedb.org/3/movie/top_rated?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;
                     $.getJSON(config, null)
                         .done(function(data) {
                         multipleQuery(data,query);
                         return data;
                     });
-                });
-
-                $( "#upcoming" ).click(function() {
+                };
+                function upcoming(){
                     $('.titlebar').html("Upcoming movies");
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-                    var query = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    var query = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;
                     $.getJSON(config, null)
                         .done(function(data) {
                         multipleQuery(data,query);
                         return data;
                     });
-                });
-
-                $( "#popular" ).click(function() {
-                    console.log("je suis la");
+                };
+                    function popular(){
                     $('.titlebar').html("Popular");
                     var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
-                    var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b80e7f54ca6c21303";                                           $.getJSON(config, null)
+                    var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;                       $.getJSON(config, null)
                         .done(function(data) {
                         multipleQuery(data,query);
                         return data;
                     });
-                });
+                };
 
                 function loadNowPlayingMovies()
                 {
@@ -170,11 +178,12 @@
                     var baseurl = data.images.base_url;
                     var size = data.images.poster_sizes[4];
 
-                    var themovieDbQueryURL = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    var themovieDbQueryURL = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;
 
                     $.getJSON(themovieDbQueryURL)
-
                         .done(function( data ) {
+                        totalPage = data.total_pages;
+                        makePagination();
                         $('#contentbar').html("");
                         $('#totalmovies').html("<p>"+data.results.length+" movies</p>");
                         $.each( data.results, function( i, item ) {
@@ -192,11 +201,14 @@
                     var size = data.images.poster_sizes[4];
                     var movie = document.getElementById("search").value;
 
-                    var themovieDbQueryURL = "http://api.themoviedb.org/3/search/movie?query="+movie+"&api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                    var themovieDbQueryURL = "http://api.themoviedb.org/3/search/movie?query="+movie+"&api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;
 
                     $.getJSON(themovieDbQueryURL)
 
                         .done(function( data ) {
+                        totalPage = data.total_pages;
+                        makePagination();
+                        
                         $('.titlebar').html("Result for "+movie);
                         $('#contentbar').html("");
                         $('#totalmovies').html("<p>"+data.results.length+" movies</p>");
@@ -217,10 +229,13 @@
                     $.getJSON(query)
 
                         .done(function( data ) {
+                        totalPage = data.total_pages;
+                        makePagination();
+                        
                         $('#contentbar').html("");
                         $('#totalmovies').html("<p>"+data.results.length+" movies</p>");
                         $.each( data.results, function( i, item ) {
-                            //console.log(item);
+
                             if (item.poster_path != null){
                                 $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.html?id="+item.id+" class='btn btn-primary' role='button'>Favoris</a> <a href=detailsview.html?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div>");}
                         });
@@ -232,6 +247,29 @@
                     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
                         results = regex.exec(location.search);
                     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+                }
+                
+                function makePagination(){
+                    console.log(prodPage);
+                    console.log(totalPage);
+                    if (prodPage == 1 && totalPage == 1)
+                    {
+                         $('.pagination').html("<span class='page dark active'>1</span>");
+                    }
+                    else if(prodPage == 1 && totalPage > 1)
+                    {
+                      
+                        $('.pagination').html("<span class='page dark active'>1</span><a href='index.html?id="+prodId+"&page="+(parseInt(prodPage, 10) + 1)+"' class='page dark'>Next</a><a href='index.html?id="+prodId+"&page="+totalPage+"' class='page dark'>Last</a>");
+                    }
+                    else if(prodPage > 1 && prodPage <totalPage){
+                        $('.pagination').html("<a href='index.html?id="+prodId+"&page=1' class='page dark'>First</a><a href='index.html?id="+prodId+"&page="+(prodPage-1)+"' class='page dark'>Previous</a><span class='page dark active'>"+prodPage+"</span><a href='index.html?id="+prodId+"&page="+(parseInt(prodPage, 10) + 1)+"' class='page dark'>Next</a><a href='index.html?id="+prodId+"&page="+totalPage+"' class='page dark'>Last</a>");
+                    }
+                    
+                    if(prodPage == totalPage){
+                      $('.pagination').html("<a href='#' class='page dark'>First</a><a href='#' class='page dark'>Previous</a><span class='page dark active'>4</span><a href='#' class='page dark'>Next</a><a href='#' class='page dark'>Last</a>");
+                    }else{
+                    
+                    }
                 }
             </script>
             </body>
