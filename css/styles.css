@@ -374,35 +374,35 @@ DETAIL VIEW
 }
 
 .title-bar {
-  padding: 20px;
-  overflow: hidden;
+    padding: 20px;
+    overflow: hidden;
 }
 .title-bar .left .bold{
-  float: left;
-  font-size: 16px;
-  text-transform: uppercase;
+    float: left;
+    font-size: 16px;
+    text-transform: uppercase;
 }
 .title-bar .left .bold{
-  float: left;
-  font-size: 15px;
+    float: left;
+    font-size: 15px;
 }
 .title-bar .left .grey {
-  color: #999;
+    color: #999;
 }
 .title-bar .left .bold {
-  font-weight: bold;
+    font-weight: bold;
 }
 .title-bar .left p {
-  display: inline-block;
-  margin-right: 10px;
+    display: inline-block;
+    margin-right: 10px;
 }
 .title-bar .right {
-  float: right;
+    float: right;
 }
 .title-bar .right a {
-  color: #999;
-  margin-left: 10px;
+    color: #999;
+    margin-left: 10px;
 }
 .title-bar .right a.blue {
-  color: #279CEB;
+    color: #279CEB;
 }

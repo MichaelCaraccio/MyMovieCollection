@@ -68,12 +68,16 @@
             <script src="js/modernizr.custom.js"></script>
             <script src="js/bootstrap.min.js"></script>
             <script>
-                
+
+                // Variables globales
                 var prodPage; 
                 var totalPage;
                 var prodId;
+                var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+
+
                 $( document ).ready(function() {
-        
+
                     $('.container').hide();
 
                     prodId = getParameterByName('id');
@@ -81,25 +85,25 @@
                     if (getParameterByName('page') != null && getParameterByName('page') != ""){
                         prodPage = getParameterByName('page');
                     }
-                    
+
                     $('.container').show();
 
                     switch(prodId) 
                     {
-                    case "nowplaying":
-                        nowplaying();
-                        break;
-                    case "top_rated":
-                        top_rated();
-                        break;
-                    case "upcoming":
-                        upcoming();
-                        break;
-                    case "popular":
-                        popular();
-                        break;
-                    default:
-                        loadNowPlayingMovies();
+                        case "nowplaying":
+                            nowplaying();
+                            break;
+                        case "top_rated":
+                            top_rated();
+                            break;
+                        case "upcoming":
+                            upcoming();
+                            break;
+                        case "popular":
+                            popular();
+                            break;
+                        default:
+                            loadNowPlayingMovies();
                     }
                 });
 
@@ -108,7 +112,6 @@
                 button.addEventListener("keyup", function(e) {
                     if (e.keyCode == 13)
                     {
-                        var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                         $.getJSON(config, null)
                             .done(function(data) {
                             searchQuery(data,"test");
@@ -120,7 +123,6 @@
                 // End SEARCH
                 function nowplaying(){
                     $('.titlebar').html("Now Playing");
-                    var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                     var query = "http://api.themoviedb.org/3/movie/now_playing?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;
                     $.getJSON(config, null)
                         .done(function(data) {
@@ -130,7 +132,6 @@
                 };
                 function top_rated(){
                     $('.titlebar').html("Top Rated");
-                    var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                     var query = "http://api.themoviedb.org/3/movie/top_rated?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;
                     $.getJSON(config, null)
                         .done(function(data) {
@@ -140,7 +141,6 @@
                 };
                 function upcoming(){
                     $('.titlebar').html("Upcoming movies");
-                    var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                     var query = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;
                     $.getJSON(config, null)
                         .done(function(data) {
@@ -148,9 +148,8 @@
                         return data;
                     });
                 };
-                    function popular(){
+                function popular(){
                     $('.titlebar').html("Popular");
-                    var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                     var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;                       $.getJSON(config, null)
                         .done(function(data) {
                         multipleQuery(data,query);
@@ -160,7 +159,6 @@
 
                 function loadNowPlayingMovies()
                 {
-                    var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
                     $.getJSON(config, nowPlayingQuery)
                         .done(function( data ) {
                         return data;
@@ -178,7 +176,7 @@
                         .done(function( data ) {
                         totalPage = data.total_pages;
                         makePagination();
-                        
+
                         $('#contentbar').html("");
                         $('#totalmovies').html("<p>"+data.total_results +" results - Page "+prodPage+"</p>");
                         $.each( data.results, function( i, item ) {
@@ -203,7 +201,7 @@
                         .done(function( data ) {
                         totalPage = data.total_pages;
                         makePagination();
-                        
+
                         $('.titlebar').html("Result for "+movie);
                         $('#contentbar').html("");
                         $('#totalmovies').html("<p>"+data.total_results +" results - Page "+prodPage+"</p>");
@@ -226,7 +224,7 @@
                         .done(function( data ) {
                         totalPage = data.total_pages;
                         makePagination();
-                        
+
                         $('#contentbar').html("");
                         $('#totalmovies').html("<p>"+data.total_results +" results - Page "+prodPage+"</p>");
                         $.each( data.results, function( i, item ) {
@@ -243,27 +241,26 @@
                         results = regex.exec(location.search);
                     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
                 }
-                
+
                 function makePagination(){
-                    console.log(prodPage);
-                    console.log(totalPage);
+
                     if (prodPage == 1 && totalPage == 1)
                     {
-                         $('.pagination').html("<span class='page dark active'>1</span>");
+                        $('.pagination').html("<span class='page dark active'>1</span>");
                     }
                     else if(prodPage == 1 && totalPage > 1)
                     {
-                      
+
                         $('.pagination').html("<span class='page dark active'>1</span><a href='index.html?id="+prodId+"&page="+(parseInt(prodPage, 10) + 1)+"' class='page dark'>Next</a><a href='index.html?id="+prodId+"&page="+totalPage+"' class='page dark'>Last</a>");
                     }
                     else if(prodPage > 1 && prodPage <totalPage){
                         $('.pagination').html("<a href='index.html?id="+prodId+"&page=1' class='page dark'>First</a><a href='index.html?id="+prodId+"&page="+(prodPage-1)+"' class='page dark'>Previous</a><span class='page dark active'>"+prodPage+"</span><a href='index.html?id="+prodId+"&page="+(parseInt(prodPage, 10) + 1)+"' class='page dark'>Next</a><a href='index.html?id="+prodId+"&page="+totalPage+"' class='page dark'>Last</a>");
                     }
-                    
+
                     if(prodPage == totalPage){
-                     $('.pagination').html("<a href='index.html?id="+prodId+"&page=1' class='page dark'>First</a><a href='index.html?id="+prodId+"&page="+(prodPage-1)+"' class='page dark'>Previous</a><span class='page dark active'>"+prodPage+"</span>");
+                        $('.pagination').html("<a href='index.html?id="+prodId+"&page=1' class='page dark'>First</a><a href='index.html?id="+prodId+"&page="+(prodPage-1)+"' class='page dark'>Previous</a><span class='page dark active'>"+prodPage+"</span>");
                     }else{
-                    
+
                     }
                 }
             </script>
