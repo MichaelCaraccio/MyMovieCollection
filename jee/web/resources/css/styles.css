@@ -4,7 +4,7 @@ body {
 }
 
 .full {
-    background: url(../img/bg1.jpg) no-repeat center center fixed; 
+    background-image: url("#{resource['img/bg1.jpg']}"); 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
