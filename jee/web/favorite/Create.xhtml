@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFavoriteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFavoriteLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{favoriteController.selected.id}" title="#{bundle.CreateFavoriteTitle_id}" required="true" requiredMessage="#{bundle.CreateFavoriteRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateFavoriteLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{favoriteController.selected.status}" title="#{bundle.CreateFavoriteTitle_status}" />
+                    <h:outputLabel value="#{bundle.CreateFavoriteLabel_favoritecol}" for="favoritecol" />
+                    <h:inputText id="favoritecol" value="#{favoriteController.selected.favoritecol}" title="#{bundle.CreateFavoriteTitle_favoritecol}" />
+                    <h:outputLabel value="#{bundle.CreateFavoriteLabel_idUser}" for="idUser" />
+                    <h:selectOneMenu id="idUser" value="#{favoriteController.selected.idUser}" title="#{bundle.CreateFavoriteTitle_idUser}" >
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFavoriteLabel_idMovie}" for="idMovie" />
+                    <h:selectOneMenu id="idMovie" value="#{favoriteController.selected.idMovie}" title="#{bundle.CreateFavoriteTitle_idMovie}" >
+                        <f:selectItems value="#{movieController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{favoriteController.create}" value="#{bundle.CreateFavoriteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{favoriteController.prepareList}" value="#{bundle.CreateFavoriteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFavoriteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

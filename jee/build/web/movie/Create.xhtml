@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMovieTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{movieController.selected.id}" title="#{bundle.CreateMovieTitle_id}" required="true" requiredMessage="#{bundle.CreateMovieRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{movieController.selected.title}" title="#{bundle.CreateMovieTitle_title}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_year}" for="year" />
+                    <h:inputText id="year" value="#{movieController.selected.year}" title="#{bundle.CreateMovieTitle_year}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_rated}" for="rated" />
+                    <h:inputText id="rated" value="#{movieController.selected.rated}" title="#{bundle.CreateMovieTitle_rated}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_released}" for="released" />
+                    <h:inputText id="released" value="#{movieController.selected.released}" title="#{bundle.CreateMovieTitle_released}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_runtime}" for="runtime" />
+                    <h:inputText id="runtime" value="#{movieController.selected.runtime}" title="#{bundle.CreateMovieTitle_runtime}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_genre}" for="genre" />
+                    <h:inputText id="genre" value="#{movieController.selected.genre}" title="#{bundle.CreateMovieTitle_genre}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_director}" for="director" />
+                    <h:inputText id="director" value="#{movieController.selected.director}" title="#{bundle.CreateMovieTitle_director}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_writer}" for="writer" />
+                    <h:inputText id="writer" value="#{movieController.selected.writer}" title="#{bundle.CreateMovieTitle_writer}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_actors}" for="actors" />
+                    <h:inputText id="actors" value="#{movieController.selected.actors}" title="#{bundle.CreateMovieTitle_actors}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_plot}" for="plot" />
+                    <h:inputText id="plot" value="#{movieController.selected.plot}" title="#{bundle.CreateMovieTitle_plot}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_language}" for="language" />
+                    <h:inputText id="language" value="#{movieController.selected.language}" title="#{bundle.CreateMovieTitle_language}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_country}" for="country" />
+                    <h:inputText id="country" value="#{movieController.selected.country}" title="#{bundle.CreateMovieTitle_country}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_awards}" for="awards" />
+                    <h:inputText id="awards" value="#{movieController.selected.awards}" title="#{bundle.CreateMovieTitle_awards}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_poster}" for="poster" />
+                    <h:inputText id="poster" value="#{movieController.selected.poster}" title="#{bundle.CreateMovieTitle_poster}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_metascore}" for="metascore" />
+                    <h:inputText id="metascore" value="#{movieController.selected.metascore}" title="#{bundle.CreateMovieTitle_metascore}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_imdbRating}" for="imdbRating" />
+                    <h:inputText id="imdbRating" value="#{movieController.selected.imdbRating}" title="#{bundle.CreateMovieTitle_imdbRating}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_imdbVotes}" for="imdbVotes" />
+                    <h:inputText id="imdbVotes" value="#{movieController.selected.imdbVotes}" title="#{bundle.CreateMovieTitle_imdbVotes}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_imdbID}" for="imdbID" />
+                    <h:inputText id="imdbID" value="#{movieController.selected.imdbID}" title="#{bundle.CreateMovieTitle_imdbID}" />
+                    <h:outputLabel value="#{bundle.CreateMovieLabel_type}" for="type" />
+                    <h:inputText id="type" value="#{movieController.selected.type}" title="#{bundle.CreateMovieTitle_type}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{movieController.create}" value="#{bundle.CreateMovieSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{movieController.prepareList}" value="#{bundle.CreateMovieShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateMovieIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

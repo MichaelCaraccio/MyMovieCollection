@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUserTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    
+                    <h:outputLabel for="username">Pseudo : </h:outputLabel>
+                    <h:inputText id="username" value="#{userController.selected.username}" label="Pseudo" 
+                                 required="true" validatorMessage="Pseudo vide" title="#{bundle.CreateUserTitle_username}">
+                        
+                    </h:inputText>
+                    <h:outputLabel for="name">Prénom : </h:outputLabel>
+                    <h:inputText id="name" value="#{userController.selected.name}" 
+                                 required="true" validatorMessage="Prénom vide" title="#{bundle.CreateUserTitle_name}" />
+                    <h:outputLabel for="lastname" >Nom de famille : </h:outputLabel>
+                    <h:inputText id="lastname" value="#{userController.selected.lastname}" 
+                                 required="true" validatorMessage="Nom de famille vide" title="#{bundle.CreateUserTitle_lastname}" />
+                    <h:outputLabel for="password" >Mot de passe : </h:outputLabel>
+                    <h:inputSecret id="password" value="#{userController.selected.password}" 
+                                   required="true" validatorMessage="Mot de passe vide" title="#{bundle.CreateUserTitle_password}" />
+                    <h:outputLabel for="email" >E-mail : </h:outputLabel>
+                    <h:inputText id="email" value="#{userController.selected.email}" 
+                                 required="true" validatorMessage="Invalid email format" title="#{bundle.CreateUserTitle_email}" >
+                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                    </h:inputText>
+                    
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userController.create}" value="#{bundle.CreateUserSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{userController.prepareList}" value="#{bundle.CreateUserShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateUserIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

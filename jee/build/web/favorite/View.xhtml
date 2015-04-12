@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFavoriteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFavoriteLabel_id}"/>
+                    <h:outputText value="#{favoriteController.selected.id}" title="#{bundle.ViewFavoriteTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewFavoriteLabel_status}"/>
+                    <h:outputText value="#{favoriteController.selected.status}" title="#{bundle.ViewFavoriteTitle_status}"/>
+                    <h:outputText value="#{bundle.ViewFavoriteLabel_favoritecol}"/>
+                    <h:outputText value="#{favoriteController.selected.favoritecol}" title="#{bundle.ViewFavoriteTitle_favoritecol}"/>
+                    <h:outputText value="#{bundle.ViewFavoriteLabel_idUser}"/>
+                    <h:outputText value="#{favoriteController.selected.idUser}" title="#{bundle.ViewFavoriteTitle_idUser}"/>
+                    <h:outputText value="#{bundle.ViewFavoriteLabel_idMovie}"/>
+                    <h:outputText value="#{favoriteController.selected.idMovie}" title="#{bundle.ViewFavoriteTitle_idMovie}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{favoriteController.destroyAndView}" value="#{bundle.ViewFavoriteDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFavoriteEditLink}"/>
+                <br />
+                <h:commandLink action="#{favoriteController.prepareCreate}" value="#{bundle.ViewFavoriteCreateLink}" />
+                <br />
+                <h:commandLink action="#{favoriteController.prepareList}" value="#{bundle.ViewFavoriteShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFavoriteIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

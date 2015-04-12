@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>LOGIN</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <f:view>
+            <h:form id="login_frm">
+                <h2>Login Please:</h2>
+                <table width="250" border="0" cellspacing="0" cellpadding="2">
+                  <tr>
+                      <td colspan="2">
+                          Incorrect Username or Password!!<br></br>
+                                <h:message for="username" styleClass="errorMsg"/><br></br>
+                            <h:message for="password" styleClass="errorMsg"/>
+                        </td>
+                  </tr>
+                  <tr>
+                    <td><h:outputText value="Username : "/></td>
+                    <td><h:inputText id="username" value="#{login_bean.username}" required="true" styleClass="input_text"/></td>
+                  </tr>
+                  <tr>
+                    <td><h:outputText value="Password : "/></td>
+                    <td><h:inputSecret id="password" value="#{login_bean.password}" required="true" styleClass="input_text"/></td>
+                  </tr>
+                  <tr>
+                      <td colspan="2" align="center">
+                          <h:commandButton action="#{login_bean.checkValidUser}" value="Login" type="submit"/></td>
+                  </tr>
+                </table>
+            </h:form>
+        </f:view>
+    </body>
+</html>

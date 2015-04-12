@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFavoriteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListFavoriteEmpty}" rendered="#{favoriteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{favoriteController.items.rowCount > 0}">
+                    <h:outputText value="#{favoriteController.pagination.pageFirstItem + 1}..#{favoriteController.pagination.pageLastItem + 1}/#{favoriteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{favoriteController.previous}" value="#{bundle.Previous} #{favoriteController.pagination.pageSize}" rendered="#{favoriteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{favoriteController.next}" value="#{bundle.Next} #{favoriteController.pagination.pageSize}" rendered="#{favoriteController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{favoriteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFavoriteTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFavoriteTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFavoriteTitle_favoritecol}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.favoritecol}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFavoriteTitle_idUser}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUser}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFavoriteTitle_idMovie}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMovie}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{favoriteController.prepareView}" value="#{bundle.ListFavoriteViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{favoriteController.prepareEdit}" value="#{bundle.ListFavoriteEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{favoriteController.destroy}" value="#{bundle.ListFavoriteDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{favoriteController.prepareCreate}" value="#{bundle.ListFavoriteCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListFavoriteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
