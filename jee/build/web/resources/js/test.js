@@ -13,7 +13,7 @@
 
                     prodId = getParameterByName('id');
                     prodPage = 1;
-                    if (getParameterByName('page') != null && getParameterByName('page') != ""){
+                    if (getParameterByName('page') !== null && getParameterByName('page') !== ""){
                         prodPage = getParameterByName('page');
                     }
 
@@ -45,7 +45,7 @@
                 // Begin SEARCH
                 var button = document.getElementById("search");
                 button.addEventListener("keyup", function(e) {
-                    if (e.keyCode == 13)
+                    if (e.keyCode === 13)
                     {
                         var url = "?id=search&page=1&query="+document.getElementById("search").value;
                         window.location.replace(url);
@@ -93,7 +93,7 @@
 
                     queryWord = document.getElementById("search").value;
 
-                    if (document.getElementById("search").value=="" || document.getElementById("search").value == null)
+                    if (document.getElementById("search").value === "" || document.getElementById("search").value === null)
                     {
                         queryWord = getParameterByName('query');
                     }
@@ -122,7 +122,7 @@
                         $('#totalmovies').html("<p>"+data.total_results +" results - Page "+prodPage+"</p>");
                         $.each( data.results, function( i, item ) {
 
-                            if (item.poster_path != null){
+                            if (item.poster_path !== null){
                                 $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.xhtml?id="+item.id+" class='btn btn-primary' role='button'>Favoris</a> <a href=detailsview.xhtml?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div>");}
                         });
                     });
@@ -143,11 +143,11 @@
                         searchString = "&query="+queryWord;
                     }
                     
-                    if (prodPage == 1 && totalPage == 1)
+                    if (prodPage === 1 && totalPage === 1)
                     {
                         $('.pagination').html("<span class='page dark active'>1</span>");
                     }
-                    else if(prodPage == 1 && totalPage > 1)
+                    else if(prodPage === 1 && totalPage > 1)
                     {
                         $('.pagination').html("<span class='page dark active'>1</span><a href='?id="+prodId+"&page="+(parseInt(prodPage, 10) + 1)+""+searchString+"' class='page dark'>Next</a><a href='?id="+prodId+"&page="+totalPage+""+searchString+"' class='page dark'>Last</a>");
                     }
@@ -155,7 +155,7 @@
                         $('.pagination').html("<a href='?id="+prodId+"&page=1"+searchString+"' class='page dark'>First</a><a href='?id="+prodId+"&page="+(prodPage-1)+""+searchString+"' class='page dark'>Previous</a><span class='page dark active'>"+prodPage+"</span><a href='?id="+prodId+"&page="+(parseInt(prodPage, 10) + 1)+""+searchString+"' class='page dark'>Next</a><a href='?id="+prodId+"&page="+totalPage+""+searchString+"' class='page dark'>Last</a>");
                     }
 
-                    else if(prodPage == totalPage){
+                    else if(prodPage === totalPage){
                         $('.pagination').html("<a href='?id="+prodId+"&page=1"+searchString+"' class='page dark'>First</a><a href='?id="+prodId+"&page="+(prodPage-1)+""+searchString+"' class='page dark'>Previous</a><span class='page dark active'>"+prodPage+"</span>");
                     }else{
                         $('.pagination').html();

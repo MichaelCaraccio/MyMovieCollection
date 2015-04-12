@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8"></meta>
+        <title>MyMovieCollection</title>
+        
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <h:outputStylesheet name="css/styles.css"/>
+        <h:outputStylesheet name="css/font-awesome.css" />
+    </h:head>
+    <h:body class="full">
+        <br></br><br></br><br></br>
+        <div class="container">
+            <div class="row row-eq-height">
+                <div class="col-xs-3 leftside">
+                    <div class="searchbar">
+                        <div class="box">
+                            <div class="container-1">
+                                <input type="search" id="search" placeholder="Search..." />
+                                <span class="icon"><i class="fa fa-search"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menubar">
+                        <p class="menu-title">Menu</p>
+                        <nav>
+                            <a href="index.xhtml?id=nowplaying&amp;page=1"><span><i class="fa fa-play"></i>&nbsp; Now Playing</span></a>
+                            <a href="index.xhtml?id=top_rated&amp;page=1"><span><i class="fa fa-dot-circle-o"></i>&nbsp; Top Rated</span></a>
+                            <a href="index.xhtml?id=popular&amp;page=1"><span><i class="fa fa-film"></i>&nbsp; Popular</span></a>
+                            <a href="index.xhtml?id=upcoming&amp;page=1"><span><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span></a>
+                        </nav>
+                        <p class="menu-title">Account</p>
+                        <nav class="cl-effect-5">
+                            <span id="login"><i class="fa fa-user"></i>&nbsp; Login</span>
+                            <span id="favorites"><i class="fa fa-heart"></i>&nbsp; Favorites</span>
+                        </nav>
+                    </div>  
+                </div>
+
+                <div class="col-xs-9 rightside">
+                    <div id="contentbar">
+                        <div class="featured-movie">
+                            <img class="cover" src="" alt=""/>
+                            <p class="corner-title"></p>
+
+                            <div class="bottom-bar">
+                                <div class="title-container">
+                                    <span class="fa fa-play-circle play-icon"></span>
+                                    <p class="movie-title"></p>
+                                </div>
+
+                                <div class="right">
+                                    <div class="stars">
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star-half-o"></span>
+                                        <span class="fa fa-star-o"></span>
+                                    </div>
+                                    <div class="share">
+                                        <icon class="fa fa-share-square"></icon> Share
+                                    </div>
+                                </div> <!-- right -->
+                            </div> <!-- bottom bar -->
+                        </div> <!-- featured -->
+                        <div class="title-bar">
+                            <div class="left">
+                                <p class="bold">Synopsis</p>
+                                <p class="movie-synopsis"></p>
+                                <table style="width:100%">
+                                    <tr>
+                                        <td class="bold" width="30%">Budget</td>
+                                        <td class="movie-budget" width="70%"></td> 
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Original Title</td>
+                                        <td class="movie-original_title"></td> 
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Release date</td>
+                                        <td class="movie-release_date"></td> 
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /container -->
+        
+        <h:outputScript name="js/jquery.min.js"/>
+        <h:outputScript name="js/modernizr.custom.js"/>
+        <h:outputScript name="js/bootstrap.min.js"/>
+        
+        <h:outputScript name="js/details.js"/>
+    </h:body>
+
+
+
+</html>
+
