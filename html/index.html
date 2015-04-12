@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" class="full">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>MyMovieCollection</title>
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <br><br><br>
+        <div class="container">
+            <div class="row row-eq-height">
+                <div class="col-xs-3 leftside">
+                    <div class="searchbar">
+                        <div class="box">
+                            <div class="container-1">
+                                <input type="search" id="search" placeholder="Search..."/>
+                                <span class="icon"><i class="fa fa-search"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menubar">
+                        <p class="menu-title">Menu</p>
+                        <nav>
+                            <a href="index.html?id=nowplaying&page=1">
+                                <span><i class="fa fa-play"></i>&nbsp; Now Playing</span>
+                            </a>
+                            <a href="index.html?id=top_rated&page=1">
+                                <span><i class="fa fa-dot-circle-o"></i>&nbsp; Top Rated</span>
+                            </a>
+                            <a href="index.html?id=popular&page=1">
+                                <span><i class="fa fa-film"></i>&nbsp; Popular</span>
+                            </a>
+                            <a href="index.html?id=upcoming&page=1">
+                                <span><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span>
+                            </a>
+                        </nav>
+                        <p class="menu-title">Account</p>
+                        <nav class="cl-effect-5">
+                            <span id="login"><i class="fa fa-user"></i>&nbsp; Login</span>
+                            <span id="favorites"><i class="fa fa-heart"></i>&nbsp; Favorites</span>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="col-xs-9 rightside">
+                    <div style="width: 100%; overflow: hidden;">
+                        <div class="titlebar">
+                            <p>Upcoming movies</p>    
+                        </div>
+                        <div id="totalmovies"></div>
+                    </div>
+                    <div id="contentbar">
+
+                    </div>
+
+                    <div class="pagination">
+                    </div>
+                </div>
+            </div> <!-- /container -->
+            <!-- script references -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+            <script src="js/modernizr.custom.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script>
+
+                // Variables globales
+                var prodPage; 
+                var totalPage;
+                var prodId;
+                var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+                var queryWord;
+                
+                $( document ).ready(function() {
+
+                    $('.container').hide();
+
+                    prodId = getParameterByName('id');
+                    prodPage = 1;
+                    if (getParameterByName('page') != null && getParameterByName('page') != ""){
+                        prodPage = getParameterByName('page');
+                    }
+
+                    $('.container').show();
+
+                    switch(prodId) 
+                    {
+                        case "nowplaying":
+                            nowplaying();
+                            break;
+                        case "top_rated":
+                            top_rated();
+                            break;
+                        case "upcoming":
+                            upcoming();
+                            break;
+                        case "popular":
+                            popular();
+                            break;
+                        case "search":
+                            search();
+                            break;
+                        default:
+                            prodId = "nowplaying";
+                            nowplaying();
+                    }
+                });
+
+                // Begin SEARCH
+                var button = document.getElementById("search");
+                button.addEventListener("keyup", function(e) {
+                    if (e.keyCode == 13)
+                    {
+                        var url = "index.html?id=search&page=1&query="+document.getElementById("search").value;
+                        window.location.replace(url);
+                    }
+
+                });
+                // End SEARCH
+                function nowplaying(){
+                    $('.titlebar').html("Now Playing");
+                    var query = "http://api.themoviedb.org/3/movie/now_playing?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;
+                    $.getJSON(config, null)
+                        .done(function(data) {
+                        multipleQuery(data,query);
+                        return data;
+                    });
+                };
+                function top_rated(){
+                    $('.titlebar').html("Top Rated");
+                    var query = "http://api.themoviedb.org/3/movie/top_rated?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;
+                    $.getJSON(config, null)
+                        .done(function(data) {
+                        multipleQuery(data,query);
+                        return data;
+                    });
+                };
+                function upcoming(){
+                    $('.titlebar').html("Upcoming movies");
+                    var query = "http://api.themoviedb.org/3/movie/upcoming?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;
+                    $.getJSON(config, null)
+                        .done(function(data) {
+                        multipleQuery(data,query);
+                        return data;
+                    });
+                };
+                function popular(){
+                    $('.titlebar').html("Popular");
+                    var query = "http://api.themoviedb.org/3/movie/popular?api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;                       $.getJSON(config, null)
+                        .done(function(data) {
+                        multipleQuery(data,query);
+                        return data;
+                    });
+                };
+                function search(){
+                    $('.titlebar').html("Search");
+
+                    queryWord = document.getElementById("search").value;
+
+                    if (document.getElementById("search").value=="" || document.getElementById("search").value == null)
+                    {
+                        queryWord = getParameterByName('query');
+                    }
+
+                    var query = "http://api.themoviedb.org/3/search/movie?query="+queryWord+"&api_key=d4a2b2b22e65297b80e7f54ca6c21303&page="+prodPage;
+                    $.getJSON(config, null)
+                        .done(function(data) {
+                        multipleQuery(data,query);
+                        return data;
+                    });
+                };
+
+               
+                function multipleQuery(data,query){
+                    // Do some processing!
+                    var baseurl = data.images.base_url;
+                    var size = data.images.poster_sizes[4];
+
+                    $.getJSON(query)
+
+                        .done(function( data ) {
+                        totalPage = data.total_pages;
+                        makePagination();
+
+                        $('#contentbar').html("");
+                        $('#totalmovies').html("<p>"+data.total_results +" results - Page "+prodPage+"</p>");
+                        $.each( data.results, function( i, item ) {
+
+                            if (item.poster_path != null){
+                                $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.html?id="+item.id+" class='btn btn-primary' role='button'>Favoris</a> <a href=detailsview.html?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div>");}
+                        });
+                    });
+                };
+
+                function getParameterByName(name) {
+                    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                        results = regex.exec(location.search);
+                    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+                }
+
+                function makePagination(){
+                    
+                    var searchString = "";
+                    
+                    if (queryWord !== undefined){
+                        searchString = "&query="+queryWord;
+                    }
+                    
+                    if (prodPage == 1 && totalPage == 1)
+                    {
+                        $('.pagination').html("<span class='page dark active'>1</span>");
+                    }
+                    else if(prodPage == 1 && totalPage > 1)
+                    {
+                        $('.pagination').html("<span class='page dark active'>1</span><a href='index.html?id="+prodId+"&page="+(parseInt(prodPage, 10) + 1)+""+searchString+"' class='page dark'>Next</a><a href='index.html?id="+prodId+"&page="+totalPage+""+searchString+"' class='page dark'>Last</a>");
+                    }
+                    else if(prodPage > 1 && prodPage <totalPage){
+                        $('.pagination').html("<a href='index.html?id="+prodId+"&page=1"+searchString+"' class='page dark'>First</a><a href='index.html?id="+prodId+"&page="+(prodPage-1)+""+searchString+"' class='page dark'>Previous</a><span class='page dark active'>"+prodPage+"</span><a href='index.html?id="+prodId+"&page="+(parseInt(prodPage, 10) + 1)+""+searchString+"' class='page dark'>Next</a><a href='index.html?id="+prodId+"&page="+totalPage+""+searchString+"' class='page dark'>Last</a>");
+                    }
+
+                    else if(prodPage == totalPage){
+                        $('.pagination').html("<a href='index.html?id="+prodId+"&page=1"+searchString+"' class='page dark'>First</a><a href='index.html?id="+prodId+"&page="+(prodPage-1)+""+searchString+"' class='page dark'>Previous</a><span class='page dark active'>"+prodPage+"</span>");
+                    }else{
+                        $('.pagination').html();
+                    }
+                }
+            </script>
+            </body>
+        </html>

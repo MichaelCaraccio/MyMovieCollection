@@ -1,0 +1,152 @@
+<!-- RATING http://fortawesome.github.io/Font-Awesome/examples/#stacked -->
+<!-- SHARE http://coolestguidesontheplanet.com/creating-social-media-menu-icons-fontawesome/ -->
+
+<!DOCTYPE html>
+<html lang="en" class="full">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>MyMovieCollection</title>
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <br><br><br>
+        <div class="container">
+            <div class="row row-eq-height">
+                <div class="col-xs-3 leftside">
+                    <div class="searchbar">
+                        <div class="box">
+                            <div class="container-1">
+                                <input type="search" id="search" placeholder="Search..." />
+                                <span class="icon"><i class="fa fa-search"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menubar">
+                        <p class="menu-title">Menu</p>
+                        <nav>
+                            <a href="index.html?id=nowplaying&page=1"><span><i class="fa fa-play"></i>&nbsp; Now Playing</span></a>
+                            <a href="index.html?id=top_rated&page=1"><span><i class="fa fa-dot-circle-o"></i>&nbsp; Top Rated</span></a>
+                            <a href="index.html?id=popular&page=1"><span><i class="fa fa-film"></i>&nbsp; Popular</span></a>
+                            <a href="index.html?id=upcoming&page=1"><span><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span></a>
+                        </nav>
+                        <p class="menu-title">Account</p>
+                        <nav class="cl-effect-5">
+                            <span id="login"><i class="fa fa-user"></i>&nbsp; Login</span>
+                            <span id="favorites"><i class="fa fa-heart"></i>&nbsp; Favorites</span>
+                        </nav>
+                    </div>  
+                </div>
+
+                <div class="col-xs-9 rightside">
+                    <div id="contentbar">
+                        <div class="featured-movie">
+                            <img class="cover" src="" alt="" class="cover"/>
+                            <p class="corner-title"></p>
+
+                            <div class="bottom-bar">
+                                <div class="title-container">
+                                    <span class="fa fa-play-circle play-icon"></span>
+                                    <p class="movie-title"></p>
+                                </div>
+
+                                <div class="right">
+                                    <div class="stars">
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star-half-o"></span>
+                                        <span class="fa fa-star-o"></span>
+                                    </div>
+                                    <div class="share">
+                                        <icon class="fa fa-share-square"></icon> Share
+                                    </div>
+                                </div> <!-- right -->
+                            </div> <!-- bottom bar -->
+                        </div> <!-- featured -->
+                        <div class="title-bar">
+                            <div class="left">
+                                <p class="bold">Synopsis</p>
+                                <p class="movie-synopsis"></p>
+                                <table style="width:100%">
+                                    <tr>
+                                        <td class="bold" width="30%">Budget</td>
+                                        <td class="movie-budget" width="70%"></td> 
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Original Title</td>
+                                        <td class="movie-original_title"></td> 
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Release date</td>
+                                        <td class="movie-release_date"></td> 
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div> <!-- /container -->
+    <!-- script references -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+
+        $( document ).ready(function() {
+
+            var prodId = getParameterByName('id');
+            coucou(getParameterByName('id'));
+        });
+
+        function coucou()
+        {
+            var config = "http://api.themoviedb.org/3/configuration?api_key=d4a2b2b22e65297b80e7f54ca6c21303";
+
+            $.getJSON(config, myCallback)
+                .done(function( data ) {
+                return data;
+            });
+        };
+
+        function myCallback(data){
+            // Do some processing!
+            var baseurl = data.images.base_url;
+            var size = data.images.poster_sizes[4];
+
+            var flickerAPI = "https://api.themoviedb.org/3/movie/"+getParameterByName('id')+"?api_key=d4a2b2b22e65297b80e7f54ca6c21303&language=fr";
+            $.getJSON(flickerAPI)
+
+                .done(function( data ) {
+                console.log(data)
+                $('.corner-title').html(""+data.genres[0].name+"");
+                $('.movie-title').html("<b>"+data.title+"</b>");
+                $('.cover').attr('src', baseurl+size+data.backdrop_path);
+                $('.movie-synopsis').html(""+data.overview+"");
+
+                if(data.budget == 0)
+                    data.budget = "Unknown";
+
+                $('.movie-budget').html(""+data.budget+" milions");
+                $('.movie-original_title').html(""+data.original_title+"");
+                $('.movie-release_date').html(""+data.release_date+"");
+            });
+        };
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    </body>
+</html>
