@@ -13,29 +13,21 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <f:view>
-            <h:form id="login_frm">
-                <h2>Login Please:</h2>
-                <table width="250" border="0" cellspacing="0" cellpadding="2">
-                  <tr>
-                      <td colspan="2">
-                          <h:message for="username" styleClass="errorMsg"/><br></br>
-                            <h:message for="password" styleClass="errorMsg"/>
-                        </td>
-                  </tr>
-                  <tr>
-                    <td><h:outputText value="Username : "/></td>
-                    <td><h:inputText id="username" value="#{login_bean.username}" required="true" styleClass="input_text"/></td>
-                  </tr>
-                  <tr>
-                    <td><h:outputText value="Password : "/></td>
-                    <td><h:inputSecret id="password" value="#{login_bean.password}" required="true" styleClass="input_text"/></td>
-                  </tr>
-                  <tr>
-                      <td colspan="2" align="center">
-                          <h:commandButton action="#{login_bean.checkValidUser}" value="Login" type="submit"/></td>
-                  </tr>
-                </table>
-            </h:form>
+            <h:form>
+                
+                
+    <h:outputLabel for="usernameInput">
+    </h:outputLabel>
+                <h:inputText id="usernameInput" value="#{loginBean.username}" required="true" />
+    <br />
+    <h:outputLabel for="passwordInput">
+    </h:outputLabel>
+    <h:inputSecret id="passwordInput" value="#{loginBean.password}" 
+                   required="true" />
+    <br />
+    <h:commandButton value="Confirmer"
+                     action="#{loginBean.login}" />
+</h:form>
         </f:view>
     </h:body> 
 </html>

@@ -6,17 +6,16 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html">
     <head>
-        <title>WELCOME</title>
+        <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <f:view>
-            <h:form>
-                <h2>Hello you are successfully login.</h2>
-            </h:form>
-        </f:view>
+        <h:form>
+        <h:commandButton value="Confirmer"
+                         action="#{loginBean.logout}" />
+        <a href="/index.xhtml"></a>
+        </h:form>
     </body>
 </html>

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
@@ -14,7 +15,7 @@
         <h:outputStylesheet name="css/styles.css"/>
         <h:outputStylesheet name="css/font-awesome.css" />
     </h:head>
-    <h:body class="full">
+    <h:body class="full" >
         <br></br><br></br><br></br>
         <div class="container">
             <div class="row row-eq-height">
@@ -53,7 +54,14 @@
                          </nav>   
                         <p class="menu-title">Account</p>
                     <nav class="cl-effect-5">
-                            <span id="login"><i class="fa fa-user"></i>&nbsp; Login</span>
+                        <c:choose>
+                            <c:when test="${loginBean.isLogged}">
+                                <span id="logout"><i class="fa fa-user"></i>&nbsp; <h:link value="Logout" outcome="/login/logout.xhtml" /></span>
+                            </c:when>
+                            <c:otherwise>
+                                <span id="logout"><i class="fa fa-user"></i>&nbsp; <h:link value="Login" outcome="/login/Login.xhtml" /></span>
+                            </c:otherwise>
+                        </c:choose>
                             <span id="favorites"><i class="fa fa-heart"></i>&nbsp; Favorites</span>
                         </nav>
                     </div>
