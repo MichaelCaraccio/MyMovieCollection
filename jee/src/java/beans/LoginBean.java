@@ -23,7 +23,7 @@ public class LoginBean {
   private String username;
   private String password;
   private String group;
-  private boolean isLogged = false;
+  private boolean isLogged;
 
   public String getUsername() {
     return this.username;
@@ -80,11 +80,12 @@ public class LoginBean {
         setIsLogged(false);
       return "/login/Login";
     }
-    if(this.username.contains("admin"))
+    /*if(this.username.contains("admin"))
     {
         setIsLogged(true);
         return "/index";
-    }
+    }*/
+    setIsLogged(true);
     return "/index";
   }
 

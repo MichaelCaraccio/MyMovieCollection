@@ -56,10 +56,13 @@
                     <nav class="cl-effect-5">
                         <c:choose>
                             <c:when test="${loginBean.isLogged}">
-                                <span id="logout"><i class="fa fa-user"></i>&nbsp; <h:link value="Logout" outcome="/login/logout.xhtml" /></span>
+                                <h:form>
+                                <span id="logout"><i class="fa fa-user"></i>&nbsp; <h:commandLink value="Logout" action="#{loginBean.logout()}" /></span>
+                                </h:form>
                             </c:when>
                             <c:otherwise>
                                 <span id="logout"><i class="fa fa-user"></i>&nbsp; <h:link value="Login" outcome="/login/Login.xhtml" /></span>
+                                <span id="logout"><i class="fa fa-user"></i>&nbsp; <h:link value="S'inscrire" outcome="/user/Create.xhtml" /></span>
                             </c:otherwise>
                         </c:choose>
                             <span id="favorites"><i class="fa fa-heart"></i>&nbsp; Favorites</span>
