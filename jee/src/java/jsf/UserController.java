@@ -81,6 +81,7 @@ public class UserController implements Serializable {
 
     public String create() {
         try {
+            current.setRole(1);
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/resources/Bundle").getString("UserCreated"));
             return prepareCreate();
