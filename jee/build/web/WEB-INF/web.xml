@@ -46,30 +46,6 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
-    <security-constraint>
-        <display-name>AdminConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>Admin</web-resource-name>
-            <description/>
-            <url-pattern>/login</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>AdminRole</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <security-constraint>
-        <display-name>UserConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>User</web-resource-name>
-            <description/>
-            <url-pattern>/login</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>UserRole</role-name>
-        </auth-constraint>
-    </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>jdbcRealm</realm-name>
@@ -80,11 +56,15 @@
     </login-config>
     <security-role>
         <description/>
-        <role-name>AdminRole</role-name>
+        <role-name>Administrator</role-name>
     </security-role>
     <security-role>
         <description/>
-        <role-name>UserRole</role-name>
+        <role-name>Manager</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>User</role-name>
     </security-role>
     <resource-ref>
         <res-ref-name>jdbc/myMovieCollection</res-ref-name>

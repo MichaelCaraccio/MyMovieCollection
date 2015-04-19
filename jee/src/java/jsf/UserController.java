@@ -78,15 +78,10 @@ public class UserController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
-    
-    public int getRole()
-    {
-        return current.getRole();
-    }
 
     public String create() {
         try {
-            current.setRole(1);
+            current.setRole("User");
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/resources/Bundle").getString("UserCreated"));
             return prepareCreate();

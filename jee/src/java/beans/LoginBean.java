@@ -5,6 +5,7 @@
  */
 package beans;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +15,10 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import jpa.entities.User;
-import jsf.UserController;
 
 /**
  *
@@ -32,7 +31,7 @@ public class LoginBean {
   private String password;
   private String group;
   private boolean isLogged;
-  private int role;
+  private String role;
   @PersistenceContext()
     private EntityManager entityManager;
 
@@ -40,12 +39,12 @@ public class LoginBean {
     return this.username;
   }
   
-  public int getRole()
+  public String getRole()
   {
       return this.role;
   }
   
-  public void setRole(int role)
+  public void setRole(String role)
   {
       this.role = role;
   }
@@ -87,51 +86,37 @@ public class LoginBean {
         ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(isLogged)).invalidate();
   }
   
-  public String login () {
+  public String login () throws IOException {
     String message = "";
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        
-        try {
-            
-            //buffer.append("SELECT u FROM User u WHERE u.username=:username");
-            
-            //entityManager.createNamedQuery("User.findByRole").setParameter(null, role);
-            List queryUser = new ArrayList();
+         List queryUser = new ArrayList();
             List queryGroup = new ArrayList();
-            queryUser = this.entityManager.createQuery("SELECT u.role FROM User u WHERE u.username=:username").setParameter("username", this.username).getResultList();
-            this.role = (int)queryUser.get(0);
-            queryGroup = this.entityManager.createQuery("SELECT g.groupname FROM Groups g WHERE g.groupid = :groupid").setParameter("groupid", this.role).getResultList();
-            
-            
-            
-            //Login via the Servlet Context
-            //hashPassword(getPassword());
-            System.out.println("Role: "+  this.role);
-            System.out.println("Groupname: "+  queryGroup.get(0));
-            
-            
+        try {
             request.login(this.username, this.password);
             
-            
-            //System.out.println(user.getRole());
-             
+            queryUser = this.entityManager.createQuery("SELECT u.role FROM User u WHERE u.username=:username").setParameter("username", this.username).getResultList();
+            this.role = (String) queryUser.get(0);
+            queryGroup = this.entityManager.createQuery("SELECT g.groupname FROM Groups g WHERE g.groupname = :groupname").setParameter("groupname", this.role).getResultList();
+
             //Retrieve the Principal
             Principal principal = request.getUserPrincipal();
-            
-            //System.out.println(this.);
-            
+                                    
             //Display a message based on the User role
             if(request.isUserInRole("Administrator")){
                 message = "Username : " + principal.getName() + " You are an Administrator, you can really f**k things up now";
             }else if(request.isUserInRole("Manager")){
+                 System.out.println("YOLO SWAG 332");
                 message = "Username : " + principal.getName() + " You are only a Manager, Don't you have a Spreadsheet to be working on??";
             }else if(request.isUserInRole("User")){
+                 System.out.println("YOLO SWAG 22");
                 message = "Username : " + principal.getName() + " You're wasting my resources...";
             }
              
             //Add the welcome message to the faces context
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
             setIsLogged(true);
+            
+            
             
             return "/login/Login.xhtml";
             

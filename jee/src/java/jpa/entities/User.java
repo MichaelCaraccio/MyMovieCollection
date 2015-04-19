@@ -11,7 +11,6 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.Basic;
@@ -22,15 +21,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author K-LED
+ * @author daniel.decarval
  */
 @Entity
 @Table(name = "user")
@@ -45,8 +42,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
     @NamedQuery(name = "User.findByRole", query = "SELECT u FROM User u WHERE u.role = :role")})
 public class User implements Serializable {
-    @Column(name = "role")
-    private Integer role;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,8 +64,9 @@ public class User implements Serializable {
     @Size(max = 70)
     @Column(name = "email")
     private String email;
-    @OneToMany(mappedBy = "idUser")
-    private Collection<Favorite> favoriteCollection;
+    @Size(max = 70)
+    @Column(name = "role")
+    private String role;
 
     public User() {
     }
@@ -90,6 +86,23 @@ public class User implements Serializable {
     public String getUsername() {
         return username;
     }
+    
+    public String hashPassword(String pass) throws NoSuchAlgorithmException{
+      try {
+          MessageDigest md = MessageDigest.getInstance("SHA-256");
+          
+          md.update(pass.getBytes("UTF-8")); // Change this to "UTF-16" if needed
+          byte[] digest = md.digest();
+          
+          BigInteger bigInt = new BigInteger(1, digest);
+          return bigInt.toString(16);
+          
+          
+      } catch (UnsupportedEncodingException ex) {
+          Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+      }
+        return null;
+  }
 
     public void setUsername(String username) {
         this.username = username;
@@ -114,23 +127,6 @@ public class User implements Serializable {
     public String getPassword() {
         return password;
     }
-    
-    public String hashPassword(String pass) throws NoSuchAlgorithmException{
-      try {
-          MessageDigest md = MessageDigest.getInstance("SHA-256");
-          
-          md.update(pass.getBytes("UTF-8")); // Change this to "UTF-16" if needed
-          byte[] digest = md.digest();
-          
-          BigInteger bigInt = new BigInteger(1, digest);
-          return bigInt.toString(16);
-          
-          
-      } catch (UnsupportedEncodingException ex) {
-          Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
-      }
-        return null;
-  }
 
     public void setPassword(String password) throws NoSuchAlgorithmException {
         this.password = hashPassword(password);
@@ -144,14 +140,12 @@ public class User implements Serializable {
         this.email = email;
     }
 
-
-    @XmlTransient
-    public Collection<Favorite> getFavoriteCollection() {
-        return favoriteCollection;
+    public String getRole() {
+        return role;
     }
 
-    public void setFavoriteCollection(Collection<Favorite> favoriteCollection) {
-        this.favoriteCollection = favoriteCollection;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
@@ -177,14 +171,6 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "jpa.entities.User[ id=" + id + " ]";
-    }
-
-    public Integer getRole() {
-        return role;
-    }
-
-    public void setRole(Integer role) {
-        this.role = role;
     }
     
 }
