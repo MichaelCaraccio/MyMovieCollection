@@ -22,7 +22,7 @@
                     <h:outputLabel value="#{bundle.CreateUserLabel_lastname}" for="lastname" />
                     <h:inputText id="lastname" value="#{userController.selected.lastname}" title="#{bundle.CreateUserTitle_lastname}" />
                     <h:outputLabel value="#{bundle.CreateUserLabel_password}" for="password" />
-                    <h:inputText id="password" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" />
+                    <h:inputSecret id="password" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" />
                     <h:outputLabel value="#{bundle.CreateUserLabel_email}" for="email" />
                     <h:inputText id="email" value="#{userController.selected.email}" title="#{bundle.CreateUserTitle_email}" />
                 </h:panelGrid>
