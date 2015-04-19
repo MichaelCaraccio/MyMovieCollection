@@ -26,6 +26,7 @@
                 $('.movie-title').html("<b>"+data.title+"</b>");
                 $('.cover').attr('src', baseurl+size+data.backdrop_path);
                 $('.movie-synopsis').html(""+data.overview+"");
+                document.getElementById('myForm:hidden2').value = "coucou";
 
                 if(data.budget === 0)
                     data.budget = "Unknown";

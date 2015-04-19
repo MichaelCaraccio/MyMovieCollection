@@ -88,10 +88,12 @@ public class LoginBean {
   
   public String login () throws IOException {
     String message = "";
-    String navto = "/login/Login.xhtml";
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-         List queryUser = new ArrayList();
-            List queryGroup = new ArrayList();
+    String navto = "";
+    
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    List queryUser = new ArrayList();
+    List queryGroup = new ArrayList();
+    
         try {
             request.login(this.username, this.password);
             
@@ -105,7 +107,11 @@ public class LoginBean {
             //Display a message based on the User role
             if(request.isUserInRole("Administrator")){
                 message = "Username : " + principal.getName() + " You are an Administrator, you can really f**k things up now";
-                navto = "/admin/AdminDashboard.xhtml";
+                System.out.println("List : " + navto);
+                
+                navto = "/admin/List.xhtml&faces-redirect=true";
+                            
+
             }else if(request.isUserInRole("Manager")){
                 message = "Username : " + principal.getName() + " You are only a Manager, Don't you have a Spreadsheet to be working on??";
             }else if(request.isUserInRole("User")){
@@ -117,10 +123,11 @@ public class LoginBean {
             setIsLogged(true);
             
             
-            
+            System.out.println("Login : " + navto);
             return navto;
             
         } catch (ServletException e) {
+            navto = "/login/Login.xhtml";
             setIsLogged(false);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "An Error Occured: Login failed", null));
             e.printStackTrace();

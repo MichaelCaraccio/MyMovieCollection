@@ -38,6 +38,27 @@ nav span {
     cursor:pointer;
 }
 
+.register > a, .login > a, .logout > a{
+    position: relative;
+    display: inline-block;
+    margin: 0px;
+    outline: none;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    text-shadow: 0 0 1px rgba(255,255,255,0.3);
+    font-size: 1.1em;
+    cursor:pointer;
+}
+
+.register:hover, 
+.login:hover, 
+.logout:hover,
+.register:focus, 
+.login:focus, 
+.logout:focus,
 nav span:hover,
 nav span:focus {
     outline: none;

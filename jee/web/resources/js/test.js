@@ -123,7 +123,7 @@
                         $.each( data.results, function( i, item ) {
 
                             if (item.poster_path !== null){
-                                $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.xhtml?id="+item.id+" class='btn btn-primary' role='button'>Favoris</a> <a href=detailsview.xhtml?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div>");}
+                                $('#contentbar').append("<div class='col-sm-6 col-md-4 card'><div class='thumbnail'><img src="+baseurl+size+item.poster_path+"><h4>"+item.original_title+"</h4><p>Date de sortie: <b>"+item.release_date+"</b></p><center><p><a href=detailsview.xhtml?id="+item.id+" class='btn btn-default' role='button'>Détails</a></p></center></div></div>");}
                         });
                     });
                 };

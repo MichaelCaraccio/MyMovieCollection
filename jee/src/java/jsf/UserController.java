@@ -69,6 +69,7 @@ public class UserController implements Serializable {
 
     public String prepareView() {
         current = (User) getItems().getRowData();
+        System.out.println(current.getUsername());
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }

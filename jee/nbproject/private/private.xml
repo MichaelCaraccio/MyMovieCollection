@@ -2,6 +2,28 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/index.xhtml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/resources/js/details.js</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/login/Login.xhtml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/resources/css/bootstrap.min.css</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/admin/Create.xhtml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/WEB-INF/faces-config.xml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/WEB-INF/glassfish-web.xml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/jpa/entities/User.java</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/user/Create.xhtml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/jpa/entities/Groups.java</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/resources/js/test.js</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/resources/css/jsfcrud.css</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/template.xhtml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/beans/details.java</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/resources/css/styles.css</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/admin/List.xhtml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/detailsview.xhtml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/jsf/UserController.java</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/beans/LoginBean.java</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/admin/Edit.xhtml</file>
+        </group>
     </open-files>
 </project-private>

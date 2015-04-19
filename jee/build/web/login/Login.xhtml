@@ -25,8 +25,13 @@ and open the template in the editor.
     <h:inputSecret id="passwordInput" value="#{loginBean.password}" 
                    required="true" />
     <br />
-    <h:commandButton value="Confirmer"
-                     action="#{loginBean.login}" />
+    <h:form>
+    <h:commandButton
+                     action="#{loginBean.login}" value="Confirmer" />
+    </h:form>
+    
+    
+
 </h:form>
         </f:view>
     </h:body> 

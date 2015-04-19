@@ -87,6 +87,17 @@
                                         <td class="bold">Release date</td>
                                         <td class="movie-release_date"></td> 
                                     </tr>
+                                    <tr>
+                                        <h:form id="myForm">
+                                            <input type="hidden" name="hidden1" value="this is hidden2" />
+ 
+                                            <input type="hidden" name="hidden2" id="hidden2" value="#{details.hidden2}" />
+                                            
+                                            <h:commandButton action="/index.xhtml" value="Ajouter au favoris">
+                                                    <f:param id="test" name="action" value="delete" />
+                                            </h:commandButton>
+                                        </h:form>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
@@ -101,8 +112,5 @@
         
         <h:outputScript name="js/details.js"/>
     </h:body>
-
-
-
 </html>
 

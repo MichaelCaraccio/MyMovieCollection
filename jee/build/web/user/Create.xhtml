@@ -15,27 +15,16 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    
-                    <h:outputLabel for="username">Pseudo : </h:outputLabel>
-                    <h:inputText id="username" value="#{userController.selected.username}" label="Pseudo" 
-                                 required="true" validatorMessage="Pseudo vide" title="#{bundle.CreateUserTitle_username}">
-                        
-                    </h:inputText>
-                    <h:outputLabel for="name">Prénom : </h:outputLabel>
-                    <h:inputText id="name" value="#{userController.selected.name}" 
-                                 required="true" validatorMessage="Prénom vide" title="#{bundle.CreateUserTitle_name}" />
-                    <h:outputLabel for="lastname" >Nom de famille : </h:outputLabel>
-                    <h:inputText id="lastname" value="#{userController.selected.lastname}" 
-                                 required="true" validatorMessage="Nom de famille vide" title="#{bundle.CreateUserTitle_lastname}" />
-                    <h:outputLabel for="password" >Mot de passe : </h:outputLabel>
-                    <h:inputSecret id="password" value="#{userController.selected.password}" 
-                                   required="true" validatorMessage="Mot de passe vide" title="#{bundle.CreateUserTitle_password}" />
-                    <h:outputLabel for="email" >E-mail : </h:outputLabel>
-                    <h:inputText id="email" value="#{userController.selected.email}" 
-                                 required="true" validatorMessage="Invalid email format" title="#{bundle.CreateUserTitle_email}" >
-                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
-                    </h:inputText>
-                    
+                    <h:outputLabel value="#{bundle.CreateUserLabel_username}" for="username" />
+                    <h:inputText id="username" value="#{userController.selected.username}" title="#{bundle.CreateUserTitle_username}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{userController.selected.name}" title="#{bundle.CreateUserTitle_name}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_lastname}" for="lastname" />
+                    <h:inputText id="lastname" value="#{userController.selected.lastname}" title="#{bundle.CreateUserTitle_lastname}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{userController.selected.email}" title="#{bundle.CreateUserTitle_email}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{userController.create}" value="#{bundle.CreateUserSaveLink}" />

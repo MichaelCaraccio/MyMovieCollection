@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charset="utf-8"></meta>
         <title>MyMovieCollection</title>
-        
+        <h:outputStylesheet name="css/jsfcrud.css"/>
         <h:outputStylesheet name="css/bootstrap.min.css"/>
         <h:outputStylesheet name="css/styles.css"/>
         <h:outputStylesheet name="css/font-awesome.css" />
@@ -31,11 +31,11 @@
                     <div class="menubar">
                         <p class="menu-title">Menu</p>
                         <nav>
-                        <h:outputLink value="index.xhtml">
-                            <span><i class="fa fa-play"></i>&nbsp;<h:outputText value="Now Playing" /></span>
-                            <f:param name="id" value="nowplaying"/>
-                            <f:param name="page" value="1"/>
-                        </h:outputLink>   
+                            <h:outputLink value="index.xhtml">
+                                <span><i class="fa fa-play"></i>&nbsp;<h:outputText value="Now Playing" /></span>
+                                <f:param name="id" value="nowplaying"/>
+                                <f:param name="page" value="1"/>
+                            </h:outputLink>   
                             <h:outputLink value="index.xhtml">
                                 <span><i class="fa fa-dot-circle-o"></i>&nbsp;<h:outputText value="Top Rated" /></span>
                                 <f:param name="id" value="top_rated"/>
@@ -51,20 +51,20 @@
                                 <f:param name="id" value="upcoming"/>
                                 <f:param name="page" value="1"/>
                             </h:outputLink>                                 
-                         </nav>   
+                        </nav>   
                         <p class="menu-title">Account</p>
-                    <nav class="cl-effect-5">
-                        <c:choose>
-                            <c:when test="${loginBean.isLogged}">
-                                <h:form>
-                                <span id="logout"><i class="fa fa-user"></i>&nbsp; <h:commandLink value="Logout" action="#{loginBean.logout()}" /></span>
-                                </h:form>
-                            </c:when>
-                            <c:otherwise>
-                                <span id="logout"><i class="fa fa-user"></i>&nbsp; <h:link value="Login" outcome="/login/Login.xhtml" /></span>
-                                <span id="logout"><i class="fa fa-user"></i>&nbsp; <h:link value="S'inscrire" outcome="/user/Create.xhtml" /></span>
-                            </c:otherwise>
-                        </c:choose>
+                        <nav class="cl-effect-5">
+                            <c:choose>
+                                <c:when test="${loginBean.isLogged}">
+                                    <h:form>
+                                        <span class="logout"><i class="fa fa-user"></i>&nbsp; <h:commandLink value="Logout" action="#{loginBean.logout()}" /></span>
+                                    </h:form>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="login"><i class="fa fa-user"></i>&nbsp; <h:link value="Login" outcome="/login/Login.xhtml" /></span>
+                                    <span class="register"><i class="fa fa-user"></i>&nbsp; <h:link value="S'inscrire" outcome="/user/Create.xhtml" /></span>
+                                </c:otherwise>
+                            </c:choose>
                             <span id="favorites"><i class="fa fa-heart"></i>&nbsp; Favorites</span>
                         </nav>
                     </div>
@@ -72,7 +72,10 @@
                 <div class="col-xs-9 rightside">
                     <div style="width: 100%; overflow: hidden;">
                         <div class="titlebar">
-                            <p>Upcoming movies</p>    
+                            <p>Upcoming movies</p>  
+                            <h:form>
+                            <h:commandButton value="pelo" onclick="nowplaying();" type="submit" />
+                            </h:form>
                         </div>
                         <div id="totalmovies"></div>
                     </div>
@@ -95,15 +98,12 @@
         <h:link outcome="/user/List" value="Show All User Items"/>
         <br />
         <h:link outcome="/login/Login" value="Login"/>-->
-        
+
         <h:outputScript name="js/jquery.min.js"/>
         <h:outputScript name="js/modernizr.custom.js"/>
         <h:outputScript name="js/bootstrap.min.js"/>
-        
+
         <h:outputScript name="js/test.js"/>
     </h:body>
-
-
-
 </html>
 
