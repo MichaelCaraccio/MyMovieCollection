@@ -78,6 +78,11 @@ public class UserController implements Serializable {
         selectedItemIndex = -1;
         return "Create";
     }
+    
+    public int getRole()
+    {
+        return current.getRole();
+    }
 
     public String create() {
         try {
