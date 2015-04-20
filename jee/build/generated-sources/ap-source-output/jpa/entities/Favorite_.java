@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import jpa.entities.Movie;
 import jpa.entities.User;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-04-20T09:19:37")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-04-20T12:35:10")
 @StaticMetamodel(Favorite.class)
 public class Favorite_ { 
 

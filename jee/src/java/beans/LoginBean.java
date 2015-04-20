@@ -9,35 +9,47 @@ import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import jpa.entities.User;
 
 /**
  *
  * @author daniel.decarval
  */
-@Stateless
-@Named
+@ManagedBean(name="loginBean")
 public class LoginBean {
   private String username;
   private String password;
   private String group;
   private boolean isLogged;
   private String role;
-  @PersistenceContext()
-    private EntityManager entityManager;
-
+  @PersistenceContext(unitName = "MyMovieCollectionPU")
+  private EntityManager entityManager;
+  
   public String getUsername() {
     return this.username;
   }
+  
+  
+  public int getUserId(String username)
+    {                
+        //this.idUser = Integer.parseInt(request.getUserPrincipal().getName());
+        System.out.println("YOLO"+username);
+
+        Query query = this.entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username").setParameter("username", username);
+        List<User> results = query.getResultList();
+        User user = results.get(0);
+        
+        return user.getId();
+    }
   
   public String getRole()
   {
