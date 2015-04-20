@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -22,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author K-LED
+ * @author daniel.decarval
  */
 @Entity
 @Table(name = "favorite")
@@ -30,8 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Favorite.findAll", query = "SELECT f FROM Favorite f"),
     @NamedQuery(name = "Favorite.findById", query = "SELECT f FROM Favorite f WHERE f.id = :id"),
-    @NamedQuery(name = "Favorite.findByStatus", query = "SELECT f FROM Favorite f WHERE f.status = :status"),
-    @NamedQuery(name = "Favorite.findByFavoritecol", query = "SELECT f FROM Favorite f WHERE f.favoritecol = :favoritecol")})
+    @NamedQuery(name = "Favorite.findByIdUser", query = "SELECT f FROM Favorite f WHERE f.idUser = :idUser"),
+    @NamedQuery(name = "Favorite.findByIdMovie", query = "SELECT f FROM Favorite f WHERE f.idMovie = :idMovie"),
+    @NamedQuery(name = "Favorite.findByStatus", query = "SELECT f FROM Favorite f WHERE f.status = :status")})
 public class Favorite implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,18 +38,13 @@ public class Favorite implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Column(name = "id_user")
+    private Integer idUser;
+    @Column(name = "id_movie")
+    private Integer idMovie;
     @Size(max = 45)
     @Column(name = "status")
     private String status;
-    @Size(max = 45)
-    @Column(name = "favoritecol")
-    private String favoritecol;
-    @JoinColumn(name = "id_user", referencedColumnName = "id")
-    @ManyToOne
-    private User idUser;
-    @JoinColumn(name = "id_movie", referencedColumnName = "id")
-    @ManyToOne
-    private Movie idMovie;
 
     public Favorite() {
     }
@@ -67,36 +61,28 @@ public class Favorite implements Serializable {
         this.id = id;
     }
 
+    public Integer getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
+    }
+
+    public Integer getIdMovie() {
+        return idMovie;
+    }
+
+    public void setIdMovie(Integer idMovie) {
+        this.idMovie = idMovie;
+    }
+
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getFavoritecol() {
-        return favoritecol;
-    }
-
-    public void setFavoritecol(String favoritecol) {
-        this.favoritecol = favoritecol;
-    }
-
-    public User getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(User idUser) {
-        this.idUser = idUser;
-    }
-
-    public Movie getIdMovie() {
-        return idMovie;
-    }
-
-    public void setIdMovie(Movie idMovie) {
-        this.idMovie = idMovie;
     }
 
     @Override

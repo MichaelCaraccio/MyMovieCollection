@@ -37,6 +37,7 @@
                 $('#form_imdbRating').val(""+data.vote_average+"");
                 $('#form_imdbVotes').val(""+data.vote_count+"");
                 $('#form_imdbId').val(""+data.imdb_id+"");
+                $('#form_idOmdb').val(""+data.id+"");
                
                 
                 

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
@@ -98,9 +99,23 @@
                                             <input type="hidden" name="form_imdbRating" id="form_imdbRating" value="" />
                                             <input type="hidden" name="form_imdbVotes" id="form_imdbVotes" value="" />
                                             <input type="hidden" name="form_imdbId" id="form_imdbId" value="" />
+                                            <input type="hidden" name="form_idOmdb" id="form_idOmdb" value="" />
                                            
-                                            <h:commandButton action="#{addToFavorite.action}" value="Ajouter au favoris" >
-                                            </h:commandButton>
+                                            <c:choose>
+                                                <c:when test="${addToFavorite.isAlreadyFavorite eq 'Ajouter aux favoris'}">
+                                                    
+                                                    <h:commandButton action="#{addToFavorite.action}" value="${addToFavorite.isAlreadyFavorite}" >
+                                                        <f:param name="id" value="#{param['id']}"/>
+                                                        
+                                                    </h:commandButton>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <h:commandButton action="#{addToFavorite.delete}" value="${addToFavorite.isAlreadyFavorite}" >
+                                                </h:commandButton>
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                       
                                         </h:form>
                                     </tr>
                                 </table>
@@ -114,7 +129,6 @@
         <h:outputScript name="js/jquery.min.js"/>
         <h:outputScript name="js/modernizr.custom.js"/>
         <h:outputScript name="js/bootstrap.min.js"/>
-        
         <h:outputScript name="js/details.js"/>
     </h:body>
 </html>
