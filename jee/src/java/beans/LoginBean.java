@@ -38,6 +38,28 @@ public class LoginBean {
     return this.username;
   }
   
+  public boolean getCurrentUser()
+  {
+      HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+      String stringUser = "";
+      try
+      {
+          stringUser = request.getUserPrincipal().getName();
+      }
+      catch(Exception e)
+      {
+          return false;
+      }
+      
+      
+      if(stringUser.isEmpty() || stringUser.contains("null") || stringUser.contains("Null"))
+      {
+          return false;
+      }
+      
+      return true;
+  }
+  
   
   public int getUserId(String username)
     {                
@@ -106,6 +128,8 @@ public class LoginBean {
     List queryUser = new ArrayList();
     List queryGroup = new ArrayList();
     
+
+    
         try {
             request.login(this.username, this.password);
             
@@ -115,13 +139,15 @@ public class LoginBean {
 
             //Retrieve the Principal
             Principal principal = request.getUserPrincipal();
+            
+            
                                     
             //Display a message based on the User role
             if(request.isUserInRole("Administrator")){
                 message = "Username : " + principal.getName() + " You are an Administrator, you can really f**k things up now";
                 System.out.println("List : " + navto);
                 
-                navto = "/admin/List.xhtml&faces-redirect=true";
+                navto = "fromLoginToListUser";
                             
 
             }else if(request.isUserInRole("Manager")){
@@ -132,22 +158,23 @@ public class LoginBean {
              
             //Add the welcome message to the faces context
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
-            setIsLogged(true);
+            //setIsLogged(true);
+            
             
             
             System.out.println("Login : " + navto);
             return navto;
             
         } catch (ServletException e) {
-            navto = "/login/Login.xhtml";
-            setIsLogged(false);
+            navto = "/jee/Login.xhtml";
+            //setIsLogged(false);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "An Error Occured: Login failed", null));
             e.printStackTrace();
         }
         return navto;
   }
 
-  public String logout() {
+  public String logout() throws IOException {
       
       
     FacesContext context = FacesContext.getCurrentInstance();
@@ -162,6 +189,9 @@ public class LoginBean {
       context.addMessage(null, new FacesMessage("Logout failed."));
     }
     
-    return "/index";
+    FacesContext.getCurrentInstance().getExternalContext().redirect("/jee/index.xhtml?faces-redirect=true");
+    
+    return "/jee/index.xhtml?faces-redirect=true";
+    
   }
 }

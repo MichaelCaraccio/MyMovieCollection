@@ -8,4 +8,20 @@
     <application>
        
     </application>
+    <navigation-rule>
+        <from-view-id>/Login.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{loginBean.login}</from-action>
+            <from-outcome>fromLoginToListUser</from-outcome>
+            <to-view-id>/admin/List.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/detailsview.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{loginBean.logout}</from-action>
+            <from-outcome>case1</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

@@ -33,22 +33,22 @@
                     <div class="menubar">
                         <p class="menu-title">Menu</p>
                         <nav>
-                            <h:outputLink value="index.xhtml">
+                            <h:outputLink value="/jee/index.xhtml">
                                 <span><i class="fa fa-play"></i>&nbsp;<h:outputText value="Now Playing" /></span>
                                 <f:param name="id" value="nowplaying"/>
                                 <f:param name="page" value="1"/>
                             </h:outputLink>   
-                            <h:outputLink value="index.xhtml">
+                            <h:outputLink value="/jee/index.xhtml">
                                 <span><i class="fa fa-dot-circle-o"></i>&nbsp;<h:outputText value="Top Rated" /></span>
                                 <f:param name="id" value="top_rated"/>
                                 <f:param name="page" value="1"/>
                             </h:outputLink>
-                            <h:outputLink value="index.xhtml">
+                            <h:outputLink value="/jee/index.xhtml">
                                 <span><i class="fa fa-film"></i>&nbsp;<h:outputText value="Popular" /></span>
                                 <f:param name="id" value="popular"/>
                                 <f:param name="page" value="1"/>
                             </h:outputLink>    
-                            <h:outputLink value="index.xhtml">
+                            <h:outputLink value="/jee/index.xhtml">
                                 <span><i class="fa fa-calendar-o"></i>&nbsp;<h:outputText value="Upcoming" /></span>
                                 <f:param name="id" value="upcoming"/>
                                 <f:param name="page" value="1"/>
@@ -57,14 +57,14 @@
                         <p class="menu-title">Account</p>
                         <nav class="cl-effect-5">
                             <c:choose>
-                                <c:when test="${loginBean.isLogged}">
+                                <c:when test="${loginBean.currentUser}">
                                     <h:form>
-                                        <span id="logout"><i class="fa fa-user"></i>&nbsp; <h:commandLink value="Logout" action="#{loginBean.logout()}" /></span>
+                                        <span class="logout"><i class="fa fa-user"></i>&nbsp; <h:commandLink value="Logout" action="#{loginBean.logout()}" /></span>
                                     </h:form>
                                 </c:when>
                                 <c:otherwise>
-                                    <span id="logout"><i class="fa fa-user"></i>&nbsp; <h:link value="Login" outcome="/login/Login.xhtml" /></span>
-                                    <span id="logout"><i class="fa fa-user"></i>&nbsp; <h:link value="S'inscrire" outcome="/user/Create.xhtml" /></span>
+                                    <span class="login"><i class="fa fa-user"></i>&nbsp; <a href="/jee/Login.xhtml">Login</a></span>
+                                    <span class="register"><i class="fa fa-user"></i>&nbsp; <a href="/jee/user/Create.xhtml">S'inscrire</a></span>
                                 </c:otherwise>
                             </c:choose>
                             <span id="favorites"><i class="fa fa-heart"></i>&nbsp; Favorites</span>

@@ -32,14 +32,24 @@
                     <div class="menubar">
                         <p class="menu-title">Menu</p>
                         <nav>
-                            <a href="index.xhtml?id=nowplaying&amp;page=1"><span><i class="fa fa-play"></i>&nbsp; Now Playing</span></a>
-                            <a href="index.xhtml?id=top_rated&amp;page=1"><span><i class="fa fa-dot-circle-o"></i>&nbsp; Top Rated</span></a>
-                            <a href="index.xhtml?id=popular&amp;page=1"><span><i class="fa fa-film"></i>&nbsp; Popular</span></a>
-                            <a href="index.xhtml?id=upcoming&amp;page=1"><span><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span></a>
+                            <a href="~/jee/index.xhtml?id=nowplaying&amp;page=1"><span><i class="fa fa-play"></i>&nbsp; Now Playing</span></a>
+                            <a href="/jee/index.xhtml?id=top_rated&amp;page=1"><span><i class="fa fa-dot-circle-o"></i>&nbsp; Top Rated</span></a>
+                            <a href="/jee/index.xhtml?id=popular&amp;page=1"><span><i class="fa fa-film"></i>&nbsp; Popular</span></a>
+                            <a href="/jee/index.xhtml?id=upcoming&amp;page=1"><span><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span></a>
                         </nav>
                         <p class="menu-title">Account</p>
                         <nav class="cl-effect-5">
-                            <span id="login"><i class="fa fa-user"></i>&nbsp; Login</span>
+                            <c:choose>
+                                <c:when test="${loginBean.currentUser}">
+                                    <h:form>
+                                        <span class="logout"><i class="fa fa-user"></i>&nbsp; <h:commandLink action="case1?faces-redirect=true" value="Logout" /></span>
+                                    </h:form>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="login"><i class="fa fa-user"></i>&nbsp; <a href="/jee/Login.xhtml">Login</a></span>
+                                    <span class="register"><i class="fa fa-user"></i>&nbsp; <a href="/jee/user/Create.xhtml">S'inscrire</a></span>
+                                </c:otherwise>
+                            </c:choose>
                             <span id="favorites"><i class="fa fa-heart"></i>&nbsp; Favorites</span>
                         </nav>
                     </div>  
