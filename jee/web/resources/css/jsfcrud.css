@@ -15,8 +15,16 @@ a {
 
 table {
     empty-cells: show;
+     
 }
 
+.conteneurtemplate{
+    margin-left: 20px !important;
+}
+
+input{
+    margin-bottom: 10px !important;
+}
 form.jsfcrud_list_form th, td th {
     font-size: x-small;
     color: #4e6a71;
@@ -39,7 +47,9 @@ form.jsfcrud_list_form th, td th {
     padding-left: 6px;
     padding-right: 6px;
     background-color: #b2d5d6;
+
 }
+
 
 td {
     vertical-align: top;

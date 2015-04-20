@@ -32,7 +32,7 @@
                     <div class="menubar">
                         <p class="menu-title">Menu</p>
                         <nav>
-                            <a href="~/jee/index.xhtml?id=nowplaying&amp;page=1"><span><i class="fa fa-play"></i>&nbsp; Now Playing</span></a>
+                            <a href="/jee/index.xhtml?id=nowplaying&amp;page=1"><span><i class="fa fa-play"></i>&nbsp; Now Playing</span></a>
                             <a href="/jee/index.xhtml?id=top_rated&amp;page=1"><span><i class="fa fa-dot-circle-o"></i>&nbsp; Top Rated</span></a>
                             <a href="/jee/index.xhtml?id=popular&amp;page=1"><span><i class="fa fa-film"></i>&nbsp; Popular</span></a>
                             <a href="/jee/index.xhtml?id=upcoming&amp;page=1"><span><i class="fa fa-calendar-o"></i>&nbsp; Upcoming</span></a>
@@ -110,22 +110,31 @@
                                             <input type="hidden" name="form_imdbVotes" id="form_imdbVotes" value="" />
                                             <input type="hidden" name="form_imdbId" id="form_imdbId" value="" />
                                             <input type="hidden" name="form_idOmdb" id="form_idOmdb" value="" />
-                                           
+                                            
+                                            <!-- Si utilisateur connecté alors on affiche le bouton ajout/suppression-->
                                             <c:choose>
-                                                <c:when test="${addToFavorite.isAlreadyFavorite eq 'Ajouter aux favoris'}">
-                                                    
-                                                    <h:commandButton action="#{addToFavorite.action}" value="${addToFavorite.isAlreadyFavorite}" >
-                                                        <f:param name="id" value="#{param['id']}"/>
-                                                        
-                                                    </h:commandButton>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <h:commandButton action="#{addToFavorite.delete}" value="${addToFavorite.isAlreadyFavorite}" >
-                                                </h:commandButton>
-                                                </c:otherwise>
-                                            </c:choose>
-
-                                       
+                                             <c:when test="${loginBean.currentUser}">
+                                                
+                                                    <c:choose>
+                                                        <c:when test="${addToFavorite.isAlreadyFavorite eq 'Ajouter aux favoris'}">
+                                                            <h:commandButton action="#{addToFavorite.action}" value="${addToFavorite.isAlreadyFavorite}" >
+                                                                <f:param name="id" value="#{param['id']}"/>
+                                                                <f:param name="deletestatement" value="0"/>
+                                                            </h:commandButton>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <h:commandButton action="#{addToFavorite.delete}" value="${addToFavorite.isAlreadyFavorite}" >
+                                                            <f:param name="id" value="#{param['id']}"/>
+                                                            <f:param name="deletestatement" value="1"/>
+                                                            </h:commandButton>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                 
+                                             </c:when>
+                                             <c:otherwise>
+                                                <!-- L'utilisateur n'est pas connecte alors on n'affiche pas le bouton-->
+                                             </c:otherwise>
+                                         </c:choose>
                                         </h:form>
                                     </tr>
                                 </table>

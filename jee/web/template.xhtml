@@ -12,7 +12,6 @@
         <meta charset="utf-8"></meta>
         <title>MyMovieCollection</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
-
         <h:outputStylesheet name="css/bootstrap.min.css"/>
         <h:outputStylesheet name="css/styles.css"/>
         <h:outputStylesheet name="css/font-awesome.css" />
@@ -82,9 +81,11 @@
                         <div id="totalmovies"></div>
                     </div>
                     <div id="contentbar">
-                        <p>
-                            <ui:insert name="body">Default Body</ui:insert>
-                        </p>
+                        <div class='conteneurtemplate'>
+                            <p>
+                                <ui:insert name="body">Default Body</ui:insert>
+                            </p>
+                        </div>
                     </div>
 
                     <div class="pagination">
