@@ -26,8 +26,23 @@
                 $('.movie-title').html("<b>"+data.title+"</b>");
                 $('.cover').attr('src', baseurl+size+data.backdrop_path);
                 $('.movie-synopsis').html(""+data.overview+"");
-                document.getElementById('myForm:hidden2').value = "coucou";
-
+                
+                $('#form_title').val(""+data.title+"");
+                
+                $('#form_released').val(""+data.release_date+"");
+                $('#form_runtime').val(""+data.runtime+"");
+                $('#form_genre').val(""+data.genres[0].name+"");
+                $('#form_plot').val(""+data.overview+"");
+                $('#form_poster').val(""+baseurl+size+data.backdrop_path+"");
+                $('#form_imdbRating').val(""+data.vote_average+"");
+                $('#form_imdbVotes').val(""+data.vote_count+"");
+                $('#form_imdbId').val(""+data.imdb_id+"");
+               
+                
+                
+                
+               // document.getElementById('myForm:hidden1').value = "coucou";
+            
                 if(data.budget === 0)
                     data.budget = "Unknown";
 

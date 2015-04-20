@@ -89,12 +89,17 @@
                                     </tr>
                                     <tr>
                                         <h:form id="myForm">
-                                            <input type="hidden" name="hidden1" value="this is hidden2" />
- 
-                                            <input type="hidden" name="hidden2" id="hidden2" value="#{details.hidden2}" />
-                                            
-                                            <h:commandButton action="/index.xhtml" value="Ajouter au favoris">
-                                                    <f:param id="test" name="action" value="delete" />
+                                            <input type="hidden" name="form_title" id="form_title" value="" />
+                                            <input type="hidden" name="form_released" id="form_released" value="" />
+                                            <input type="hidden" name="form_runtime" id="form_runtime" value="" />
+                                            <input type="hidden" name="form_genre" id="form_genre" value="" />
+                                            <input type="hidden" name="form_plot" id="form_plot" value="" />
+                                            <input type="hidden" name="form_poster" id="form_poster" value="" />
+                                            <input type="hidden" name="form_imdbRating" id="form_imdbRating" value="" />
+                                            <input type="hidden" name="form_imdbVotes" id="form_imdbVotes" value="" />
+                                            <input type="hidden" name="form_imdbId" id="form_imdbId" value="" />
+                                           
+                                            <h:commandButton action="#{addToFavorite.action}" value="Ajouter au favoris" >
                                             </h:commandButton>
                                         </h:form>
                                     </tr>
