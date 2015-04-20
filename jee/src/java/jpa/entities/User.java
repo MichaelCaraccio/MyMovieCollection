@@ -130,7 +130,12 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) throws NoSuchAlgorithmException {
-        this.password = hashPassword(password);
+        if(password.length() < 40){
+            this.password = hashPassword(password);
+        }
+        else{
+            this.password = password;
+        }
     }
 
     public String getEmail() {

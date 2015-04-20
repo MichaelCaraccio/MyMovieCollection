@@ -38,7 +38,7 @@ nav span {
     cursor:pointer;
 }
 
-.register > a, .login > a, .logout > a{
+.register > a, .login > a, .logout > a, .favorites > a{
     position: relative;
     display: inline-block;
     margin: 0px;

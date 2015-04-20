@@ -17,6 +17,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletRequest;
 
 @ManagedBean(name = "userController")
 @SessionScoped
@@ -66,7 +67,16 @@ public class UserController implements Serializable {
         recreateModel();
         return "List";
     }
-
+    
+    public String editmyprofil() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String username = request.getUserPrincipal().getName();
+        
+        current = (User) getItems().getRowData();
+        //System.out.println(current.getUsername());
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        return "View";
+    }
     public String prepareView() {
         current = (User) getItems().getRowData();
         System.out.println(current.getUsername());

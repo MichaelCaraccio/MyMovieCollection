@@ -12,6 +12,7 @@
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/WEB-INF/faces-config.xml</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/resources/Bundle.properties</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/jpa/entities/User.java</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/favorite/View.xhtml</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/user/Create.xhtml</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/jpa/entities/Movie.java</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/jpa/entities/Groups.java</file>
@@ -20,6 +21,7 @@
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/resources/css/jsfcrud.css</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/setup/glassfish-resources.xml</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/user/List.xhtml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/favorite/Edit.xhtml</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/admin/List.xhtml</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/resources/css/styles.css</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/jsf/UserController.java</file>
@@ -30,13 +32,19 @@
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/jpa/entities/Favorite.java</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/jpa/session/UserFacade.java</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/resources/css/bootstrap.min.css</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/favorite/List.xhtml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/admin/View.xhtml</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/beans/AddToFavorite.java</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/beans/UserManager.java</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/user/Edit.xhtml</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/template.xhtml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/favorite/Create.xhtml</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/jpa/session/FavoriteFacade.java</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/detailsview.xhtml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/resources/Bundle_fr_FR.properties</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/src/java/jsf/FavoriteController.java</file>
             <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/admin/Edit.xhtml</file>
+            <file>file:/C:/Users/daniel.decarval/Documents/Inf3DLMb/JavaEE/MyMovieCollection-easy/MyMovieCollection/jee/web/movie/Create.xhtml</file>
         </group>
     </open-files>
 </project-private>

@@ -15,21 +15,17 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="Username &lt;br/&gt;" escape="false"></h:outputText>
                     <h:outputLabel value="#{bundle.CreateUserLabel_username}" for="username" />
                     <h:inputText id="username" value="#{userController.selected.username}" title="#{bundle.CreateUserTitle_username}" />
                     
-                    <h:outputText value="Lastname &lt;br/&gt;" escape="false"></h:outputText>
                     <h:outputLabel value="#{bundle.CreateUserLabel_name}" for="name" />
                     <h:inputText id="name" value="#{userController.selected.name}" title="#{bundle.CreateUserTitle_name}" />
                     <h:outputLabel value="#{bundle.CreateUserLabel_lastname}" for="lastname" />
                     
-                    <h:outputText value="Password &lt;br/&gt;" escape="false"></h:outputText>
                     <h:inputText id="lastname" value="#{userController.selected.lastname}" title="#{bundle.CreateUserTitle_lastname}" />
                     <h:outputLabel value="#{bundle.CreateUserLabel_password}" for="password" />
                     <h:inputSecret id="password" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" />
                     
-                    <h:outputText value="Email &lt;br/&gt;" escape="false"></h:outputText>
                     <h:outputLabel value="#{bundle.CreateUserLabel_email}" for="email" />
                     <h:inputText id="email" value="#{userController.selected.email}" title="#{bundle.CreateUserTitle_email}" />
                 </h:panelGrid>
@@ -37,10 +33,7 @@
                 <h:commandLink action="#{userController.create}" value="#{bundle.CreateUserSaveLink}" />
                 <br />
                 <br />
-                <h:commandLink action="#{userController.prepareList}" value="#{bundle.CreateUserShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateUserIndexLink}"/>
+                <h:link outcome="/index" value="Back"/>
             </h:form>
         </ui:define>
     </ui:composition>

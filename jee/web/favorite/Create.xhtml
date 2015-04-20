@@ -19,8 +19,6 @@
                     <h:inputText id="id" value="#{favoriteController.selected.id}" title="#{bundle.CreateFavoriteTitle_id}" required="true" requiredMessage="#{bundle.CreateFavoriteRequiredMessage_id}"/>
                     <h:outputLabel value="#{bundle.CreateFavoriteLabel_status}" for="status" />
                     <h:inputText id="status" value="#{favoriteController.selected.status}" title="#{bundle.CreateFavoriteTitle_status}" />
-                    <h:outputLabel value="#{bundle.CreateFavoriteLabel_favoritecol}" for="favoritecol" />
-                    <h:inputText id="favoritecol" value="#{favoriteController.selected.favoritecol}" title="#{bundle.CreateFavoriteTitle_favoritecol}" />
                     <h:outputLabel value="#{bundle.CreateFavoriteLabel_idUser}" for="idUser" />
                     <h:selectOneMenu id="idUser" value="#{favoriteController.selected.idUser}" title="#{bundle.CreateFavoriteTitle_idUser}" >
                         <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>

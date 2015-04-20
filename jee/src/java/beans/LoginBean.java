@@ -30,6 +30,48 @@ public class LoginBean {
   private String password;
   private String group;
   private boolean isLogged;
+  private boolean isAdmin;
+
+    public boolean isIsAdmin() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String username = request.getUserPrincipal().getName();
+
+             
+        Query query = this.entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username").setParameter("username", username);
+        List<User> results = query.getResultList();
+        User user = results.get(0);
+        return user.getRole().contains("Administrator");
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public boolean isIsManager() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String username = request.getUserPrincipal().getName();
+
+        Query query = this.entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username").setParameter("username", username);
+        List<User> results = query.getResultList();
+        User user = results.get(0);
+            
+        return user.getRole().contains("Manager");
+    }
+    
+    public User sendMyProfil() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String username = request.getUserPrincipal().getName();
+
+        Query query = this.entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username").setParameter("username", username);
+        List<User> results = query.getResultList();
+            
+        return results.get(0);
+    }
+
+    public void setIsManager(boolean isManager) {
+        this.isManager = isManager;
+    }
+  private boolean isManager;
   private String role;
   @PersistenceContext(unitName = "MyMovieCollectionPU")
   private EntityManager entityManager;
@@ -59,13 +101,9 @@ public class LoginBean {
       
       return true;
   }
-  
-  
+     
   public int getUserId(String username)
-    {                
-        //this.idUser = Integer.parseInt(request.getUserPrincipal().getName());
-        System.out.println("YOLO"+username);
-
+    { 
         Query query = this.entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username").setParameter("username", username);
         List<User> results = query.getResultList();
         User user = results.get(0);
@@ -121,7 +159,6 @@ public class LoginBean {
   }
   
   public String login () throws IOException {
-    String message = "";
     String navto = "";
     
     HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -140,33 +177,19 @@ public class LoginBean {
             //Retrieve the Principal
             Principal principal = request.getUserPrincipal();
             
-            
-                                    
             //Display a message based on the User role
             if(request.isUserInRole("Administrator")){
-                message = "Username : " + principal.getName() + " You are an Administrator, you can really f**k things up now";
-                System.out.println("List : " + navto);
-                
                 navto = "fromLoginToListUser";
-                            
-
             }else if(request.isUserInRole("Manager")){
-                message = "Username : " + principal.getName() + " You are only a Manager, Don't you have a Spreadsheet to be working on??";
+                navto = "fromLoginUser";
             }else if(request.isUserInRole("User")){
-                message = "Username : " + principal.getName() + " You're wasting my resources...";
+                navto = "fromLoginUser";
             }
-             
-            //Add the welcome message to the faces context
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
-            //setIsLogged(true);
             
-            
-            
-            System.out.println("Login : " + navto);
             return navto;
             
         } catch (ServletException e) {
-            navto = "/jee/Login.xhtml";
+            navto = "fromLoginUser";
             //setIsLogged(false);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "An Error Occured: Login failed", null));
             e.printStackTrace();

@@ -42,15 +42,24 @@
                             <c:choose>
                                 <c:when test="${loginBean.currentUser}">
                                     <h:form>
-                                        <span class="logout"><i class="fa fa-user"></i>&nbsp; <h:commandLink action="case1?faces-redirect=true" value="Logout" /></span>
+                                        <span class="logout"><i class="fa fa-user"></i>&nbsp; <h:commandLink value="Logout" action="#{loginBean.logout()}"></h:commandLink></span>
+                                        <span class="favorites"><i class="fa fa-heart"></i>&nbsp; <a href="/jee/favorite/List.xhtml">Favorites</a></span>
+                                        <c:choose>
+                                            <c:when test="${loginBean.isAdmin}" >
+                                                <span class="favorites"><i class="fa fa-user"></i>&nbsp; <a href="/jee/admin/List.xhtml">User list</a></span>
+                                            </c:when>
+                               
+                                            <c:when test="${loginBean.isManager}">
+                                                <span class="favorites"><i class="fa fa-user"></i>&nbsp; <a href="/jee/manager/List.xhtml">User list</a></span>
+                                            </c:when>
+                                        </c:choose>
                                     </h:form>
                                 </c:when>
                                 <c:otherwise>
                                     <span class="login"><i class="fa fa-user"></i>&nbsp; <a href="/jee/Login.xhtml">Login</a></span>
-                                    <span class="register"><i class="fa fa-user"></i>&nbsp; <a href="/jee/user/Create.xhtml">S'inscrire</a></span>
+                                    <span class="register"><i class="fa fa-user"></i>&nbsp; <a href="/jee/user/Create.xhtml">Register</a></span>
                                 </c:otherwise>
                             </c:choose>
-                            <span id="favorites"><i class="fa fa-heart"></i>&nbsp; Favorites</span>
                         </nav>
                     </div>  
                 </div>
