@@ -52,6 +52,7 @@ public class LoginBean {
         String username = request.getUserPrincipal().getName();
 
         Query query = this.entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username").setParameter("username", username);
+        
         List<User> results = query.getResultList();
         User user = results.get(0);
             
