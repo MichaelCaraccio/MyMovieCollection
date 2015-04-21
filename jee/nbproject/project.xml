@@ -139,10 +139,6 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.xercesImpl-2.9.1.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
                     <file>${file.reference.xml-apis-1.3.04.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
